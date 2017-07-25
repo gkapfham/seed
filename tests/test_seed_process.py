@@ -1,17 +1,11 @@
-"""Test suite for the seed_download.py module"""
+"""Test suite for the seed_process.py module"""
 
 import os
 import pytest
 
 import seed
 import seed_download
-
-
-VERIFIED = True
-
-
-DOWNLOADED = True
-NOT_DOWNLOADED = False
+import seed_process
 
 
 @pytest.fixture
@@ -22,10 +16,10 @@ def verifiable_seed_args():
     return ['--token', simple_form_token, '--download-json']
 
 
-def test_seed_verified_downloaded_something(verifiable_seed_args):
+def test_dictionary_is_not_none(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
-    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
-    assert seed_args_verified == VERIFIED
     downloaded_json = seed_download.seed_download(seed_arguments.token)
     assert downloaded_json is not None
+    seed_internal_dictionary = seed_process.seed_process_create_internal_dictionary(downloaded_json)
+    assert seed_internal_dictionary is not None

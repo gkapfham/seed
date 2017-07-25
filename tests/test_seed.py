@@ -1,4 +1,4 @@
-"""Test suite for the seed module"""
+"""Test suite for the seed.py module"""
 
 
 import pytest
