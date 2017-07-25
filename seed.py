@@ -1,8 +1,9 @@
-""" seed downloads a JSON file from SimpleForm and then analyzes it """
+""" seed.py downloads a JSON file from SimpleForm and then analyzes it """
 
 import argparse
 import sys
 
+import seed_download
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
@@ -44,8 +45,16 @@ def verify_seed_arguments(args):
 
 
 if __name__ == '__main__':
+    # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
     did_verify_arguments = verify_seed_arguments(seed_arguments)
+
+    # arguments were not verified, so print help message
     if did_verify_arguments is False:
         print("Incorrect arguments to seed.py")
         seed_parser.print_help()
+    # arguments were verified, so perform designated action
+    else:
+        # download the JSON file from SimpleForm
+        if seed_arguments.download_json is not None:
+            seed_download.seed_download(seed_arguments.token)
