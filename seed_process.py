@@ -6,6 +6,12 @@ from collections import OrderedDict
 
 def seed_process_remove_emails(seed_json):
     """ Process the JSON file by removing the provided email address """
+    processed_seed_list = seed_process_create_internal_dictionary(seed_json)
+    return processed_seed_list
+
+
+def seed_process_create_internal_dictionary(seed_json):
+    """ Process the JSON file creating the internal dictionary"""
     maximum_form_submission = len(seed_json)
     processed_seed_list = []
     for current_form_submission_index in range(1, maximum_form_submission):
@@ -19,3 +25,4 @@ def seed_process_remove_emails(seed_json):
                     processed_seed_json_dict[key_submission_details] = value_specific_details
                     processed_seed_list.append(processed_seed_json_dict)
     return processed_seed_list
+
