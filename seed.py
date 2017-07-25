@@ -49,21 +49,21 @@ if __name__ == '__main__':
     # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
     did_verify_arguments = verify_seed_arguments(seed_arguments)
-    print(seed_arguments)
-    print("After verified arguments")
+    if seed_arguments.verbose:
+        print(seed_arguments)
+    # print("After verified arguments")
 
     # arguments were not verified, so print help message
     if did_verify_arguments is False:
-        print("Incorrect arguments to seed.py")
+        # print("Incorrect arguments to seed.py")
         seed_parser.print_help()
     # arguments were verified, so perform designated action
     else:
         # download the JSON file from SimpleForm and remove the email addresses
         if seed_arguments.download_json is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
-            print("Before internal dictionary")
+            # print("Before internal dictionary")
             seed_internal_dictionary = seed_process.seed_process_create_internal_dictionary(seed_json)
-            # seed_no_subscriptions = seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary)
-            # seed_no_email_no_subscriptions = seed_process.seed_process_remove_emails(seed_no_subscriptions)
-            print("After internal dictionary")
-            # print(seed_internal_dictionary)
+            seed_no_subscriptions = seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary)
+            seed_no_email_no_subscriptions = seed_process.seed_process_remove_emails(seed_no_subscriptions)
+            print(seed_no_email_no_subscriptions)
