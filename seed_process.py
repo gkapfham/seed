@@ -1,9 +1,6 @@
 """ seed_process.py processes a JSON file from SimpleForm """
 
 
-from collections import OrderedDict
-
-
 DATA_PAYLOAD = "data"
 UPDATES = "Updates"
 SUBJECT = "_subject"
