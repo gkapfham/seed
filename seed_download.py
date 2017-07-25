@@ -13,5 +13,5 @@ def seed_download(seed_simpleform_token):
     if simpleform_response.ok:
         # extract the JSON object
         response_json = simpleform_response.json()
-    print("Right before seed_download return")
+    # print("Right before seed_download return")
     return response_json

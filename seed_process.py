@@ -34,6 +34,6 @@ def seed_process_create_internal_dictionary(seed_json):
         for key_specific_person, value_specific_person in current_form_submission.items():
             if key_specific_person == DATA_PAYLOAD:
                 submission_details_dict = value_specific_person
-                print("SUBMISSION: ", submission_details_dict)
+                # print("SUBMISSION: ", submission_details_dict)
                 internal_dictionary_list.append(submission_details_dict)
     return internal_dictionary_list
