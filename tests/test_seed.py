@@ -34,8 +34,8 @@ def test_seed_empty_test():
 
 def test_seed_verified(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
-    seed_args = seed.parse_seed_arguments(verifiable_seed_args)
-    seed_args_verified = seed.verify_seed_arguments(seed_args)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
 
