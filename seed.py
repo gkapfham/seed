@@ -32,6 +32,15 @@ def parse_seed_arguments(args):
     return utterson_args
 
 
+def verify_seed_arguments(args):
+    """ Checks if the seed_arguments are correct """
+    verified = True
+    if args.download_json is not None and args.token is None:
+        verified = False
+    return verified
+
+
 if __name__ == '__main__':
     """Run the program with the command-line arguments """
-    utterson_args = parse_seed_arguments(sys.argv[1:])
+    seed_arguments = parse_seed_arguments(sys.argv[1:])
+    verified = verify_seed_arguments(seed_arguments)
