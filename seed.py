@@ -37,6 +37,8 @@ def verify_seed_arguments(args):
     verified = True
     if args.download_json is not None and args.token is None:
         verified = False
+    elif args.create_list is not None and args.token is None:
+        verified = False
     return verified
 
 
