@@ -6,35 +6,31 @@ import sys
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
-    parser = argparse.ArgumentParser()
+    seed_parser = argparse.ArgumentParser()
 
-    parser.add_argument("--token",
+    seed_parser.add_argument("--token",
                         help="SimpleForm API token",
                         required=False)
 
-    parser.add_argument("--download-json",
+    seed_parser.add_argument("--download-json",
                         help="Download the JSON file",
                         action="store_false")
 
-    parser.add_argument("--create-list",
+    seed_parser.add_argument("--create-list",
                         help="Create the mailing list",
                         action="store_false")
 
-    parser.add_argument("--show-respondents",
+    seed_parser.add_argument("--show-respondents",
                         help="Show the SEED Respondents",
                         action="store_false")
 
-    parser.add_argument("--verbose",
+    seed_parser.add_argument("--verbose",
                         help="Verbose mode",
                         action="store_false")
 
     # verify the arguments, printing help message if they are wrong
-    seed_arguments = parser.parse_args(args)
-    verified_arguments = verify_seed_arguments(seed_arguments)
-    if verified_arguments is False:
-        print("Incorrect arguments")
-        parser.print_help()
-    return seed_arguments
+    seed_arguments = seed_parser.parse_args(args)
+    return seed_arguments, seed_parser
 
 
 def verify_seed_arguments(args):
@@ -48,4 +44,8 @@ def verify_seed_arguments(args):
 
 
 if __name__ == '__main__':
-    seed_arguments = parse_seed_arguments(sys.argv[1:])
+    seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
+    did_verify_arguments = verify_seed_arguments(seed_arguments)
+    if did_verify_arguments is False:
+        print("Incorrect arguments to seed.py")
+        seed_parser.print_help()
