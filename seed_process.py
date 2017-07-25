@@ -5,6 +5,7 @@ DATA_PAYLOAD = "data"
 UPDATES = "Updates"
 SUBJECT = "_subject"
 
+
 def seed_process_remove_emails(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
     processed_seed_list = seed_internal_dictionary_list
@@ -12,7 +13,7 @@ def seed_process_remove_emails(seed_internal_dictionary_list):
 
 
 def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
-    """ Process the JSON file by removing the provided email address """
+    """ Process the JSON file by removing the subscription entries """
     processed_seed_list = seed_internal_dictionary_list
     for internal_dictionary in seed_internal_dictionary_list:
         if UPDATES in internal_dictionary[SUBJECT]:
