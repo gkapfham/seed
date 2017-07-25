@@ -59,5 +59,7 @@ if __name__ == '__main__':
         # download the JSON file from SimpleForm and remove the email addresses
         if seed_arguments.download_json is not None:
             seed_json = seed_download.seed_download(seed_arguments.token)
-            seed_json_no_email = seed_process.seed_process_remove_emails(seed_json)
-            print(seed_json_no_email)
+            seed_internal_dictionary = seed_process.seed_process_create_internal_dictionary(seed_json)
+            seed_no_subscriptions = seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary)
+            seed_no_email_no_subscriptions = seed_process.seed_process_remove_emails(seed_no_subscriptions)
+            print(seed_internal_dictionary)
