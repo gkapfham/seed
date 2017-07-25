@@ -20,6 +20,10 @@ def parse_seed_arguments(args):
                         help="Create the mailing list",
                         action="store_false")
 
+    parser.add_argument("--show-respondents",
+                        help="Show the SEED Respondents",
+                        action="store_false")
+
     parser.add_argument("--verbose",
                         help="Verbose mode",
                         action="store_false")
