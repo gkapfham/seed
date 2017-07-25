@@ -11,24 +11,24 @@ def parse_seed_arguments(args):
     seed_parser = argparse.ArgumentParser()
 
     seed_parser.add_argument("--token",
-                        help="SimpleForm API token",
-                        required=False)
+                             help="SimpleForm API token",
+                             required=False)
 
     seed_parser.add_argument("--download-json",
-                        help="Download the JSON file",
-                        action="store_false")
+                             help="Download the JSON file",
+                             action="store_false")
 
     seed_parser.add_argument("--create-list",
-                        help="Create the mailing list",
-                        action="store_false")
+                             help="Create the mailing list",
+                             action="store_false")
 
     seed_parser.add_argument("--show-respondents",
-                        help="Show the SEED Respondents",
-                        action="store_false")
+                             help="Show the SEED Respondents",
+                             action="store_false")
 
     seed_parser.add_argument("--verbose",
-                        help="Verbose mode",
-                        action="store_false")
+                             help="Verbose mode",
+                             action="store_false")
 
     # verify the arguments, printing help message if they are wrong
     seed_arguments = seed_parser.parse_args(args)
