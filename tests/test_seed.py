@@ -6,7 +6,7 @@ import seed
 
 
 VERIFIED = True
-NOT_VERIFIED = True
+NOT_VERIFIED = False
 
 
 @pytest.fixture
@@ -41,6 +41,6 @@ def test_seed_verified(verifiable_seed_args):
 
 def test_seed_not_verified_download(not_verifiable_seed_args_download):
     """Run seed with a specified token and it is verified"""
-    seed_args = seed.parse_seed_arguments(not_verifiable_seed_args_download)
-    seed_args_verified = seed.verify_seed_arguments(seed_args)
-    assert seed_args_verified == NOT_VERIFIED
+    seed_arguments, seed_parser = seed.parse_seed_arguments(not_verifiable_seed_args_download)
+    were_seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert were_seed_args_verified == NOT_VERIFIED
