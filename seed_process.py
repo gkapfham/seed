@@ -4,11 +4,14 @@
 DATA_PAYLOAD = "data"
 UPDATES = "Updates"
 SUBJECT = "_subject"
+EMAIL = "reply_to"
 
 
 def seed_process_remove_emails(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
     processed_seed_list = seed_internal_dictionary_list
+    for internal_dictionary in seed_internal_dictionary_list:
+        del internal_dictionary[EMAIL]
     return processed_seed_list
 
 
