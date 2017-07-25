@@ -31,10 +31,10 @@ def test_dictionary_list_after_email_list_removal_is_smaller(verifiable_seed_arg
     assert downloaded_json is not None
     seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(downloaded_json)
     assert seed_internal_dictionary_list is not None
-    length_internal_dictionary = len(seed_internal_dictionary_list)
-    assert length_internal_dictionary > 0
-    seed_removed_emails = seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
-    assert len(seed_removed_emails) < length_internal_dictionary
+    length_internal_dictionary_list = len(seed_internal_dictionary_list)
+    assert length_internal_dictionary_list > 0
+    seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
+    assert len(seed_internal_dictionary_list) < length_internal_dictionary_list
 
 def test_dictionary_list_after_email_address_removal_is_same(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
@@ -43,7 +43,7 @@ def test_dictionary_list_after_email_address_removal_is_same(verifiable_seed_arg
     assert downloaded_json is not None
     seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(downloaded_json)
     assert seed_internal_dictionary_list is not None
-    length_internal_dictionary = len(seed_internal_dictionary_list)
-    assert length_internal_dictionary > 0
-    seed_removed_emails = seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
-    assert len(seed_removed_emails) == length_internal_dictionary
+    length_internal_dictionary_list = len(seed_internal_dictionary_list)
+    assert length_internal_dictionary_list > 0
+    seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
+    assert len(seed_internal_dictionary_list) == length_internal_dictionary_list

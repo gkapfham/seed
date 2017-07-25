@@ -9,10 +9,10 @@ EMAIL = "reply_to"
 
 def seed_process_remove_emails(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
-    processed_seed_list = seed_internal_dictionary_list
+    print(len(seed_internal_dictionary_list))
     for internal_dictionary in seed_internal_dictionary_list:
         del internal_dictionary[EMAIL]
-    return processed_seed_list
+    print(len(seed_internal_dictionary_list))
 
 
 def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
@@ -22,7 +22,6 @@ def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
         if UPDATES in internal_dictionary[SUBJECT]:
             seed_internal_dictionary_index = seed_internal_dictionary_list.index(internal_dictionary)
             del processed_seed_list[seed_internal_dictionary_index]
-    return processed_seed_list
 
 
 def seed_process_create_internal_dictionary(seed_json):
