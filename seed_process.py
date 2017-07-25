@@ -20,18 +20,18 @@ def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
     for internal_dictionary in seed_internal_dictionary_list:
         if UPDATES in internal_dictionary[SUBJECT]:
             seed_internal_dictionary_index = seed_internal_dictionary_list.index(internal_dictionary)
-            del seed_internal_dictionary_list[seed_internal_dictionary_index]
+            del processed_seed_list[seed_internal_dictionary_index]
     return processed_seed_list
 
 
 def seed_process_create_internal_dictionary(seed_json):
-    """ Process the JSON file creating the internal dictionary"""
+    """ Process the JSON file creating the internal dictionary """
     maximum_form_submission = len(seed_json)
-    processed_seed_list = []
+    internal_dictionary_list = []
     for current_form_submission_index in range(1, maximum_form_submission):
         current_form_submission = seed_json[current_form_submission_index]
         for key_specific_person, value_specific_person in current_form_submission.items():
             if key_specific_person == DATA_PAYLOAD:
                 submission_details_dict = value_specific_person
-                processed_seed_list.append(submission_details_dict)
-    return processed_seed_list
+                internal_dictionary_list.append(submission_details_dict)
+    return internal_dictionary_list
