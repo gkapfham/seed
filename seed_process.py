@@ -5,17 +5,22 @@ from collections import OrderedDict
 
 
 DATA_PAYLOAD = "data"
+UPDATES = "Updates"
+SUBJECT = "_subject"
 
-
-def seed_process_remove_emails(seed_internal_dictionary):
+def seed_process_remove_emails(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
-    processed_seed_list = seed_internal_dictionary
+    processed_seed_list = seed_internal_dictionary_list
     return processed_seed_list
 
 
-def seed_process_remove_email_subscriptions(seed_internal_dictionary):
+def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
-    processed_seed_list = seed_internal_dictionary
+    processed_seed_list = seed_internal_dictionary_list
+    for internal_dictionary in seed_internal_dictionary_list:
+        if UPDATES in internal_dictionary[SUBJECT]:
+            seed_internal_dictionary_index = seed_internal_dictionary_list.index(internal_dictionary)
+            del seed_internal_dictionary_list[seed_internal_dictionary_index]
     return processed_seed_list
 
 
@@ -28,6 +33,5 @@ def seed_process_create_internal_dictionary(seed_json):
         for key_specific_person, value_specific_person in current_form_submission.items():
             if key_specific_person == DATA_PAYLOAD:
                 submission_details_dict = value_specific_person
-                # print("person", submission_details_dict)
                 processed_seed_list.append(submission_details_dict)
     return processed_seed_list
