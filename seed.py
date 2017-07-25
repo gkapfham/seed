@@ -4,6 +4,7 @@ import argparse
 import sys
 
 import seed_download
+import seed_process
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
@@ -55,6 +56,8 @@ if __name__ == '__main__':
         seed_parser.print_help()
     # arguments were verified, so perform designated action
     else:
-        # download the JSON file from SimpleForm
+        # download the JSON file from SimpleForm and remove the email addresses
         if seed_arguments.download_json is not None:
-            seed_download.seed_download(seed_arguments.token)
+            seed_json = seed_download.seed_download(seed_arguments.token)
+            seed_json_no_email = seed_process.seed_process_remove_emails(seed_json)
+            print(seed_json_no_email)
