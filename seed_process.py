@@ -7,9 +7,15 @@ from collections import OrderedDict
 DATA_PAYLOAD = "data"
 
 
-def seed_process_remove_emails(seed_json):
+def seed_process_remove_emails(seed_internal_dictionary):
     """ Process the JSON file by removing the provided email address """
-    processed_seed_list = seed_process_create_internal_dictionary(seed_json)
+    processed_seed_list = seed_internal_dictionary
+    return processed_seed_list
+
+
+def seed_process_remove_email_subscriptions(seed_internal_dictionary):
+    """ Process the JSON file by removing the provided email address """
+    processed_seed_list = seed_internal_dictionary
     return processed_seed_list
 
 
@@ -22,6 +28,7 @@ def seed_process_create_internal_dictionary(seed_json):
         for key_specific_person, value_specific_person in current_form_submission.items():
             if key_specific_person == DATA_PAYLOAD:
                 submission_details_dict = value_specific_person
+                print("person", value_specific_person)
                 ordered_submission_details = OrderedDict(sorted(submission_details_dict.items(), key=lambda t: t[0]))
                 processed_seed_json_dict = {}
                 for key_submission_details, value_specific_details in ordered_submission_details.items():
