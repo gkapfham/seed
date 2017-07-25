@@ -12,6 +12,14 @@ def parse_seed_arguments(args):
                         help="SimpleForm API token",
                         required=False)
 
+    parser.add_argument("--download-json",
+                        help="Download the JSON file",
+                        action="store_false")
+
+    parser.add_argument("--create-list",
+                        help="Create the mailing list",
+                        action="store_false")
+
     parser.add_argument("--verbose",
                         help="Verbose mode",
                         action="store_false")
