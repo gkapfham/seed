@@ -70,7 +70,10 @@ if __name__ == '__main__':
         seed_parser.print_help()
     # arguments were verified, so perform designated action
     else:
-        # download the JSON file from SimpleForm and remove the email addresses
+        # download the JSON file from SimpleForm
+        # remove the email addresses
+        # remove the subscriptions from other forms
+        # save the final list of dictionaries to a JSON file
         if seed_arguments.download_json is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
             seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
