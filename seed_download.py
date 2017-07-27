@@ -24,3 +24,10 @@ def seed_save(list_of_dictionaries):
     """ Save the list of dictionaries to the specified file """
     with open(JSON_FILENAME, 'w') as file_output:
         json.dump(list_of_dictionaries, file_output)
+
+
+def seed_load():
+    """ Save the list of dictionaries to the specified file """
+    with open(JSON_FILENAME, 'r') as file_output:
+        seed_json = json.load(file_output)
+    return seed_json
