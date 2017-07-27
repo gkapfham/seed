@@ -29,3 +29,18 @@ def test_mailing_list_entries_for_each_name(verifiable_seed_args):
     assert length_internal_dictionary_list > 0
     mailing_list = seed_create.create_mailing_list(seed_internal_dictionary_list)
     assert length_internal_dictionary_list == len(mailing_list)
+
+
+def test_fact_responses_for_each_name(verifiable_seed_args):
+    """Make sure that the removal of the email address makes a same-sized list"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
+    downloaded_json = seed_download.seed_download(seed_arguments.token)
+    assert downloaded_json is not None
+    seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(downloaded_json)
+    assert seed_internal_dictionary_list is not None
+    length_internal_dictionary_list = len(seed_internal_dictionary_list)
+    assert length_internal_dictionary_list > 0
+    seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
+    assert len(seed_internal_dictionary_list) < length_internal_dictionary_list
+    fact_answers_list = seed_create.create_fact_answer_list(seed_internal_dictionary_list)
+    assert len(seed_internal_dictionary_list) == len(fact_answers_list)
