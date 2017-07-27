@@ -74,7 +74,7 @@ if __name__ == '__main__':
         seed_parser.print_help()
     # arguments were verified, so perform designated action
     else:
-        # download the JSON file from SimpleForm
+        # TASK: download the JSON file from SimpleForm
         # remove the email addresses
         # remove the subscriptions from other forms
         # save the final list of dictionaries to a JSON file
@@ -88,9 +88,11 @@ if __name__ == '__main__':
             seed_download.seed_save(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
+        # TASK: Show all of the respondents to the SEED survey
         elif seed_arguments.show_respondents is True:
             seed_dictionary_list = seed_download.seed_load()
             seed_display.seed_display_respondents(seed_dictionary_list)
+        # TASK: Show a sample response to the SEED survey
         elif seed_arguments.show_sample is True:
             seed_dictionary_list = seed_download.seed_load()
             seed_display.seed_display_sample(seed_dictionary_list)
