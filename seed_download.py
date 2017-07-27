@@ -1,11 +1,15 @@
 """ seed_download.py downloads a JSON file from SimpleForm """
 
 
+import json
 import requests
 
 
+JSON_FILENAME = "seed.json"
+
+
 def seed_download(seed_simpleform_token):
-    """ download the JSON file from SimpleForm using the provided token """
+    """ Download the JSON file from SimpleForm using the provided token """
     simpleform_response = requests.get('http://getsimpleform.com/messages.json?api_token=' + seed_simpleform_token)
     response_json = None
 
@@ -13,5 +17,10 @@ def seed_download(seed_simpleform_token):
     if simpleform_response.ok:
         # extract the JSON object
         response_json = simpleform_response.json()
-    # print("Right before seed_download return")
     return response_json
+
+
+def seed_save(list_of_dictionaries):
+    """ Save the list of dictionaries to the specified file """
+    with open(JSON_FILENAME, 'w') as file_output:
+        json.dump(list_of_dictionaries, file_output)
