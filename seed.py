@@ -27,7 +27,11 @@ def parse_seed_arguments(args):
                              action="store_true")
 
     seed_parser.add_argument("--show-respondents",
-                             help="Show the SEED Respondents",
+                             help="Show the SEED respondents",
+                             action="store_true")
+
+    seed_parser.add_argument("--show-sample",
+                             help="Show a SEED sample",
                              action="store_true")
 
     seed_parser.add_argument("--verbose",
@@ -85,8 +89,8 @@ if __name__ == '__main__':
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
         elif seed_arguments.show_respondents is True:
-            print("Here!")
             seed_dictionary_list = seed_download.seed_load()
-            print(seed_dictionary_list)
-            seed_display.seed_display_respondents()
-
+            seed_display.seed_display_respondents(seed_dictionary_list)
+        elif seed_arguments.show_sample is True:
+            seed_dictionary_list = seed_download.seed_load()
+            seed_display.seed_display_sample(seed_dictionary_list)
