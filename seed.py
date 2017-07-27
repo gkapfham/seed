@@ -6,6 +6,10 @@ import sys
 import seed_download
 import seed_process
 
+
+INDENT = "  "
+
+
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
     seed_parser = argparse.ArgumentParser()
@@ -45,7 +49,15 @@ def verify_seed_arguments(args):
     return verified_arguments
 
 
+def display_welcome_message():
+    """ Display a welcome message """
+    print("SEED: Educational Discussions with Software Engineers")
+    print("http://www.cs.allegheny.edu/sites/gkapfham/seed/")
+    print()
+
+
 if __name__ == '__main__':
+    display_welcome_message()
     # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
     did_verify_arguments = verify_seed_arguments(seed_arguments)
@@ -62,8 +74,7 @@ if __name__ == '__main__':
         if seed_arguments.download_json is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
             seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
-            print("Starting ", len(seed_internal_dictionary_list))
+            print(INDENT, "Downloaded a total of", len(seed_internal_dictionary_list), "entries")
             seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
             seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
-            # print(seed_internal_dictionary_list)
-            print("Ending ", len(seed_internal_dictionary_list))
+            print(INDENT, "Saved a total of", len(seed_internal_dictionary_list), "entries")
