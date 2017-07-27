@@ -3,13 +3,13 @@
 
 import json
 
-import seed_dictionary
+import seed_lookup
 import seed
 
 def seed_display_respondents(seed_dictionary_list):
     """ Displays all of the people who responded """
     for current_seed_dictionary in seed_dictionary_list:
-        current_name = current_seed_dictionary[seed_dictionary.PERSON_NAME]
+        current_name = current_seed_dictionary[seed_lookup.PERSON_NAME]
         print(seed.INDENT, current_name)
 
 
