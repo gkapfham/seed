@@ -23,8 +23,20 @@ def not_verifiable_seed_args_download_json():
 
 @pytest.fixture
 def not_verifiable_seed_args_create_list():
-    """Return a default utterson arguments, resulting in list of size 10"""
+    """Return arguments that are not verifiable because create_list with no token"""
     return ['--create-list']
+
+
+@pytest.fixture
+def verifiable_seed_args_show_respondents():
+    """Return arguments that are verifiable because only show_respondents"""
+    return ['--show-respondents']
+
+
+@pytest.fixture
+def verifiable_seed_args_show_sample():
+    """Return arguments that are verifiable because only show_respondents"""
+    return ['--show-sample']
 
 
 def test_seed_empty_test():
@@ -35,6 +47,20 @@ def test_seed_empty_test():
 def test_seed_verified(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == VERIFIED
+
+
+def test_seed_verified_show_respondents(verifiable_seed_args_show_respondents):
+    """Run seed with a specified token and it is verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_show_respondents)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == VERIFIED
+
+
+def test_seed_verified_show_sample(verifiable_seed_args_show_sample):
+    """Run seed with a specified token and it is verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_show_sample)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
