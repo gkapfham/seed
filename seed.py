@@ -78,3 +78,5 @@ if __name__ == '__main__':
             seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
             seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
             print(INDENT, "Saved a total of", len(seed_internal_dictionary_list), "entries")
+            if seed_arguments.verbose:
+                print(seed_internal_dictionary_list)
