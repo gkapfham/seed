@@ -38,6 +38,10 @@ def verifiable_seed_args_show_sample():
     """Return arguments that are verifiable because only show_respondents"""
     return ['--show-sample']
 
+@pytest.fixture
+def verifiable_seed_args_facts():
+    """Return arguments that are verifiable because only analyze_facts"""
+    return ['--analyze-facts']
 
 def test_seed_empty_test():
     """Run an empty test to ensure test harness working"""
@@ -61,6 +65,13 @@ def test_seed_verified_show_respondents(verifiable_seed_args_show_respondents):
 def test_seed_verified_show_sample(verifiable_seed_args_show_sample):
     """Run seed with a specified token and it is verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_show_sample)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == VERIFIED
+
+
+def test_seed_verified_analyze_facts(verifiable_seed_args_facts):
+    """Run seed with a specified token and it is verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_facts)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 

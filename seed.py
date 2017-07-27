@@ -19,6 +19,10 @@ def parse_seed_arguments(args):
                              help="SimpleForm API token",
                              required=False)
 
+    seed_parser.add_argument("--analyze-facts",
+                             help="Answer the 'fact' question responses",
+                             action="store_true")
+
     seed_parser.add_argument("--create-list",
                              help="Create the mailing list",
                              action="store_true")
