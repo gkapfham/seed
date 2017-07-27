@@ -3,6 +3,7 @@
 import argparse
 import sys
 
+import seed_create
 import seed_display
 import seed_download
 import seed_process
@@ -96,3 +97,8 @@ if __name__ == '__main__':
         elif seed_arguments.show_sample is True:
             seed_dictionary_list = seed_download.seed_load()
             seed_display.seed_display_sample(seed_dictionary_list)
+        # TASK: Create the mailing list for the SEED respondents
+        elif seed_arguments.create_list is True:
+            seed_json = seed_download.seed_download(seed_arguments.token)
+            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
+            seed_create.create_mailing_list(seed_internal_dictionary_list)
