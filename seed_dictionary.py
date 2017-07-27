@@ -1,0 +1,12 @@
+""" Give a dictionary of constants for the keys in the SEED file """
+
+COMPANY_NAME = "company_name"
+FORMAT = "_format"
+PERSON_NAME = "name"
+QUESITON_FACT = "question_fact"
+QUESTION_ADVICE = "question_advice"
+QUESTION_CHALLENGE = "question_challenge"
+SUBJECT = "_subject"
+TIME = "time"
+TITLE_NAME = "title_name"
+WEB_SITE = "web_site"
