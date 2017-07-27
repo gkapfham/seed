@@ -62,6 +62,8 @@ if __name__ == '__main__':
         if seed_arguments.download_json is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
             seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
+            print("Starting ", len(seed_internal_dictionary_list))
             seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
             seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
-            print(seed_internal_dictionary_list)
+            # print(seed_internal_dictionary_list)
+            print("Ending ", len(seed_internal_dictionary_list))
