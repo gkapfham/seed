@@ -63,7 +63,6 @@ if __name__ == '__main__':
     did_verify_arguments = verify_seed_arguments(seed_arguments)
     if seed_arguments.verbose:
         print(seed_arguments)
-    # print("After verified arguments")
 
     # arguments were not verified, so print help message
     if did_verify_arguments is False:
