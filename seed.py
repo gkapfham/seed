@@ -18,12 +18,12 @@ def parse_seed_arguments(args):
                              help="SimpleForm API token",
                              required=False)
 
-    seed_parser.add_argument("--download-json",
-                             help="Download the JSON file",
-                             action="store_true")
-
     seed_parser.add_argument("--create-list",
                              help="Create the mailing list",
+                             action="store_true")
+
+    seed_parser.add_argument("--download-json",
+                             help="Download the JSON file",
                              action="store_true")
 
     seed_parser.add_argument("--show-respondents",
@@ -78,5 +78,6 @@ if __name__ == '__main__':
             seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
             seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
             print(INDENT, "Saved a total of", len(seed_internal_dictionary_list), "entries")
+            seed_download.seed_save(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
