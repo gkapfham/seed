@@ -18,6 +18,8 @@ def seed_process_remove_emails(seed_internal_dictionary_list):
 
 
 def contains_update_subject(internal_dictionary):
+    """ Return True if the subject contains Updates from ...
+        This means that it is part of a different form """
     if UPDATES in internal_dictionary[SUBJECT]:
         return True
     else:
