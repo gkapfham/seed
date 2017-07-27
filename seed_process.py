@@ -13,7 +13,6 @@ EMAIL = "reply_to"
 def seed_process_remove_emails(seed_internal_dictionary_list):
     """ Process the JSON file by removing the provided email address """
     for internal_dictionary in seed_internal_dictionary_list:
-        # print("INTERNAL RE: ", internal_dictionary)
         del internal_dictionary[EMAIL]
 
 
