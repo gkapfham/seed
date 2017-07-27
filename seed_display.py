@@ -2,6 +2,7 @@
 
 
 import json
+import random
 
 import seed_lookup
 import seed
@@ -15,5 +16,8 @@ def seed_display_respondents(seed_dictionary_list):
 
 def seed_display_sample(seed_dictionary_list):
     """ Displays all of the topics """
-    first_seed_dictionary = seed_dictionary_list[0]
+    first_entry_index = 0
+    last_entry_index = len(seed_dictionary_list)
+    randomly_chosen_index = random.randint(first_entry_index, last_entry_index)
+    first_seed_dictionary = seed_dictionary_list[randomly_chosen_index]
     print(json.dumps(first_seed_dictionary, indent=3))
