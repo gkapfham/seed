@@ -3,9 +3,9 @@
 import argparse
 import sys
 
+import seed_display
 import seed_download
 import seed_process
-
 
 INDENT = "  "
 
@@ -42,9 +42,9 @@ def parse_seed_arguments(args):
 def verify_seed_arguments(args):
     """ Checks if the seed_arguments are correct """
     verified_arguments = True
-    if args.download_json is not None and args.token is None:
+    if args.download_json is not False and args.token is None:
         verified_arguments = False
-    elif args.create_list is not None and args.token is None:
+    elif args.create_list is not False and args.token is None:
         verified_arguments = False
     return verified_arguments
 
@@ -66,6 +66,7 @@ if __name__ == '__main__':
 
     # arguments were not verified, so print help message
     if did_verify_arguments is False:
+        print("Could not verify the command-line arguments!")
         seed_parser.print_help()
     # arguments were verified, so perform designated action
     else:
@@ -83,3 +84,9 @@ if __name__ == '__main__':
             seed_download.seed_save(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
+        elif seed_arguments.show_respondents is True:
+            print("Here!")
+            seed_dictionary_list = seed_download.seed_load()
+            print(seed_dictionary_list)
+            seed_display.seed_display_respondents()
+
