@@ -27,7 +27,7 @@ def contains_update_subject(internal_dictionary):
 
 
 def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
-    """ Process the JSON file by removing the subscription entries """
+    """ Process the JSON file by removing the mailing list subscription entries """
     seed_internal_dictionary_list[:] = filterfalse(contains_update_subject, seed_internal_dictionary_list)
 
 
