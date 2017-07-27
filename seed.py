@@ -93,6 +93,12 @@ if __name__ == '__main__':
             seed_download.seed_save_json(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
+        # TASK: Create the mailing list for the SEED respondents
+        elif seed_arguments.create_list is True:
+            seed_json = seed_download.seed_download(seed_arguments.token)
+            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
+            list_of_email = seed_create.create_mailing_list(seed_internal_dictionary_list)
+            seed_download.seed_save_mailing_list(list_of_email)
         # TASK: Show all of the respondents to the SEED survey
         elif seed_arguments.show_respondents is True:
             seed_dictionary_list = seed_download.seed_load()
@@ -101,9 +107,8 @@ if __name__ == '__main__':
         elif seed_arguments.show_sample is True:
             seed_dictionary_list = seed_download.seed_load()
             seed_display.seed_display_sample(seed_dictionary_list)
-        # TASK: Create the mailing list for the SEED respondents
-        elif seed_arguments.create_list is True:
-            seed_json = seed_download.seed_download(seed_arguments.token)
-            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
-            list_of_email = seed_create.create_mailing_list(seed_internal_dictionary_list)
-            seed_download.seed_save_mailing_list(list_of_email)
+        # TASK: Analyze the responses to the 'fact' question
+        elif seed_arguments.analyze_facts is True:
+            seed_dictionary_list = seed_download.seed_load()
+            fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
+            print(fact_response_list)
