@@ -6,7 +6,6 @@ import seed_lookup
 
 DIVIDER = ","
 QUOTATION_MARK = "\""
-MAILING_LIST_FILENAME = "recipients.csv"
 
 
 def create_mailing_list(seed_dictionary_list):
@@ -17,3 +16,4 @@ def create_mailing_list(seed_dictionary_list):
         current_email = current_seed_dictionary[seed_lookup.EMAIL]
         current_list_entry = current_email + DIVIDER + QUOTATION_MARK + current_name + QUOTATION_MARK
         email_address_list.append(current_list_entry)
+    return email_address_list
