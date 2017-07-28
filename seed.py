@@ -20,6 +20,10 @@ def parse_seed_arguments(args):
                              help="SimpleForm API token",
                              required=False)
 
+    seed_parser.add_argument("--analyze-advice",
+                             help="Analyze responses to the 'advice' question",
+                             action="store_true")
+
     seed_parser.add_argument("--analyze-facts",
                              help="Analyze responses to the 'fact' question",
                              action="store_true")
