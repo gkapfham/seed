@@ -135,3 +135,8 @@ if __name__ == '__main__':
             seed_dictionary_list = seed_download.seed_load()
             fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
             perform_gensim_analysis(seed_arguments, fact_response_list)
+        # TASK: Analyze the responses to the 'advice' question
+        elif seed_arguments.analyze_advice is True:
+            seed_dictionary_list = seed_download.seed_load()
+            advice_response_list = seed_create.create_advice_answer_list(seed_dictionary_list)
+            perform_gensim_analysis(seed_arguments, advice_response_list)
