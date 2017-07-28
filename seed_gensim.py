@@ -8,7 +8,12 @@ import gensim
 
 
 def create_topic_model(list_responses):
-    topic_model_dictionary = create_topic_model_dictionary(list_responses)
+    topic_model_dictionary, texts_to_analyze = create_topic_model_dictionary(list_responses)
+    # convert tokenized documents into a document-term matrix
+    corpus = [topic_model_dictionary.doc2bow(text) for text in texts_to_analyze]
+    # generate LDA model from the texts_to_analyze and the topic_model_dictionary
+    lda_model = gensim.models.ldamodel.LdaModel(corpus, num_topics=3, id2word=topic_model_dictionary, passes=20)
+    return lda_model
 
 
 def create_topic_model_dictionary(list_responses):
@@ -31,4 +36,4 @@ def create_topic_model_dictionary(list_responses):
         texts_to_analyze.append(stemmed_tokens)
         # turn the tokenized documents into a id <-> term dictionary
         topic_model_dictionary = corpora.Dictionary(texts_to_analyze)
-    return topic_model_dictionary
+    return topic_model_dictionary, texts_to_analyze
