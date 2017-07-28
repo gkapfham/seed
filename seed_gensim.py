@@ -14,7 +14,7 @@ def create_topic_model(list_responses):
     topic_model_corpus = [topic_model_dictionary.doc2bow(text) for text in texts_to_analyze]
     # generate LDA model from the texts_to_analyze and the topic_model_dictionary
     lda_model = gensim.models.ldamodel.LdaModel(topic_model_corpus, num_topics=3, id2word=topic_model_dictionary, passes=20)
-    return lda_model, topic_model_corpus
+    return lda_model, topic_model_corpus, texts_to_analyze
 
 
 def create_topic_model_dictionary(list_responses):
@@ -40,14 +40,14 @@ def create_topic_model_dictionary(list_responses):
     return topic_model_dictionary, texts_to_analyze
 
 
-def seed_display_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus, texts_to_analyze, num_topics):
+def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus, texts_to_analyze, num_topics):
     """ Using only textual output provide a basic display of the topic model """
     print(seed_gensim_topic_model)
-    print(seed_gensim_topic_model.print_topics(3))
+    print(seed_gensim_topic_model.print_topics(num_topics))
     print()
-    print("Analysis:")
-    for single_corpus, textual_document in zip(seed_gensim_corpus, texts_to_analyze):
-        print(single_corpus)
-        print(textual_document)
-        print(seed_gensim_topic_model[single_corpus])
-    print()
+    # print("Analysis:")
+    # for single_corpus, textual_document in zip(seed_gensim_corpus, texts_to_analyze):
+        # print(single_corpus)
+        # print(textual_document)
+        # print(seed_gensim_topic_model[single_corpus])
+    # print()
