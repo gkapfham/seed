@@ -7,6 +7,7 @@ import seed_create
 import seed_display
 import seed_download
 import seed_process
+import seed_gensim
 
 INDENT = "  "
 
@@ -111,4 +112,4 @@ if __name__ == '__main__':
         elif seed_arguments.analyze_facts is True:
             seed_dictionary_list = seed_download.seed_load()
             fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
-            print(fact_response_list)
+            seed_gensim.create_topic_model(fact_response_list)
