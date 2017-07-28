@@ -24,6 +24,10 @@ def parse_seed_arguments(args):
                              help="Analyze responses to the 'advice' question",
                              action="store_true")
 
+    seed_parser.add_argument("--analyze-challenge",
+                             help="Analyze responses to the 'challenge' question",
+                             action="store_true")
+
     seed_parser.add_argument("--analyze-facts",
                              help="Analyze responses to the 'fact' question",
                              action="store_true")
@@ -81,6 +85,7 @@ def perform_gensim_analysis(seed_arguments, response_list):
         num_topics_requested = seed_arguments.num_topics
     else:
         num_topics_requested = DEFAULT_TOPIC_NUMBER
+
     gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
     seed_gensim.show_topic_model_textually(gensim_topic_model,
                                            topic_model_corpus,
@@ -140,3 +145,8 @@ if __name__ == '__main__':
             seed_dictionary_list = seed_download.seed_load()
             advice_response_list = seed_create.create_advice_answer_list(seed_dictionary_list)
             perform_gensim_analysis(seed_arguments, advice_response_list)
+        # TASK: Analyze the responses to the 'advice' question
+        elif seed_arguments.analyze_challenge is True:
+            seed_dictionary_list = seed_download.seed_load()
+            challenge_response_list = seed_create.create_challenge_answer_list(seed_dictionary_list)
+            perform_gensim_analysis(seed_arguments, challenge_response_list)
