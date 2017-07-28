@@ -79,9 +79,9 @@ def perform_gensim_analysis(seed_arguments, response_list):
         num_topics_requested = DEFAULT_TOPIC_NUMBER
     gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
     seed_gensim.show_topic_model_textually(gensim_topic_model,
-                                            topic_model_corpus,
-                                            texts_to_analyze,
-                                            num_topics=num_topics_requested)
+                                           topic_model_corpus,
+                                           texts_to_analyze,
+                                           num_topics=num_topics_requested)
 
 
 if __name__ == '__main__':
