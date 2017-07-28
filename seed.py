@@ -10,7 +10,7 @@ import seed_process
 import seed_gensim
 
 INDENT = "  "
-
+DEFAULT_TOPIC_NUMBER = 5
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
@@ -23,6 +23,10 @@ def parse_seed_arguments(args):
     seed_parser.add_argument("--analyze-facts",
                              help="Analyze responses to the 'fact' question",
                              action="store_true")
+
+    seed_parser.add_argument("--num-topics",
+                             help="Number of topics in the LDA model",
+                             required=False)
 
     seed_parser.add_argument("--create-list",
                              help="Create the mailing list",
@@ -110,9 +114,13 @@ if __name__ == '__main__':
             seed_display.seed_display_sample(seed_dictionary_list)
         # TASK: Analyze the responses to the 'fact' question
         elif seed_arguments.analyze_facts is True:
+            if seed_arguments is not None:
+                num_topics = seed_arguments.num_topics
+            else:
+                num_topics = DEFAULT_TOPIC_NUMBER
             seed_dictionary_list = seed_download.seed_load()
             fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
-            gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(fact_response_list)
+            gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(fact_response_list, num_topics)
             seed_gensim.show_topic_model_textually(gensim_topic_model,
                                                    topic_model_corpus,
                                                    texts_to_analyze,
