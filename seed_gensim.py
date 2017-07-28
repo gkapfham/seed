@@ -13,21 +13,22 @@ def create_topic_model(list_responses):
 
 def create_topic_model_dictionary(list_responses):
     """ Create a topic model dictionary from responses """
+    # create the objects needed to prepare the dictionary
     tokenizer = RegexpTokenizer(r'\w+')
     en_stop = get_stop_words('en')
     p_stemmer = PorterStemmer()
-    texts = []
-    # loop through document list
+    texts_to_analyze = []
+    # loop through the list of responses
     for i in list_responses:
         # clean and tokenize document string
         raw = i.lower()
         tokens = tokenizer.tokenize(raw)
-        # remove stop words from tokens
+        # remove the stop words from tokens
         stopped_tokens = [i for i in tokens if not i in en_stop]
-        # stem tokens
+        # stem the tokens
         stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
-        # add tokens to list
-        texts.append(stemmed_tokens)
-        # turn our tokenized documents into a id <-> term dictionary
-        topic_model_dictionary = corpora.Dictionary(texts)
+        # add tokens to list of texts to analyze
+        texts_to_analyze.append(stemmed_tokens)
+        # turn the tokenized documents into a id <-> term dictionary
+        topic_model_dictionary = corpora.Dictionary(texts_to_analyze)
     return topic_model_dictionary
