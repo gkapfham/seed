@@ -7,13 +7,13 @@ from gensim import corpora, models
 import gensim
 
 
-def create_topic_model(list_responses):
+def create_topic_model(list_responses, num_topics_requested):
     """ Using LDA from gensim, create the topic model from the list of responses """
     topic_model_dictionary, texts_to_analyze = create_topic_model_dictionary(list_responses)
     # convert tokenized documents into a document-term matrix, or the corpus
     topic_model_corpus = [topic_model_dictionary.doc2bow(text) for text in texts_to_analyze]
     # generate LDA model from the texts_to_analyze and the topic_model_dictionary
-    lda_model = gensim.models.ldamodel.LdaModel(topic_model_corpus, num_topics=3, id2word=topic_model_dictionary, passes=20)
+    lda_model = gensim.models.ldamodel.LdaModel(topic_model_corpus, num_topics=num_topics_requested, id2word=topic_model_dictionary, passes=20)
     return lda_model, topic_model_corpus, texts_to_analyze
 
 
