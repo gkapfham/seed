@@ -8,11 +8,15 @@ import gensim
 
 
 def create_topic_model(list_responses):
+    topic_model_dictionary = create_topic_model_dictionary(list_responses)
+
+
+def create_topic_model_dictionary(list_responses):
+    """ Create a topic model dictionary from responses """
     tokenizer = RegexpTokenizer(r'\w+')
     en_stop = get_stop_words('en')
     p_stemmer = PorterStemmer()
     texts = []
-
     # loop through document list
     for i in list_responses:
         # clean and tokenize document string
@@ -25,9 +29,5 @@ def create_topic_model(list_responses):
         # add tokens to list
         texts.append(stemmed_tokens)
         # turn our tokenized documents into a id <-> term dictionary
-        dictionary = corpora.Dictionary(texts)
-
-        print("Dictionary: ")
-        for k, v in dictionary.token2id.items():
-            print(k, v)
-        print()
+        topic_model_dictionary = corpora.Dictionary(texts)
+    return topic_model_dictionary
