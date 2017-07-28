@@ -5,6 +5,7 @@ from stop_words import get_stop_words
 from nltk.stem.porter import PorterStemmer
 from gensim import corpora, models
 import gensim
+import pyLDAvis.gensim
 
 
 def create_topic_model(list_responses, num_topics_requested):
@@ -14,7 +15,7 @@ def create_topic_model(list_responses, num_topics_requested):
     topic_model_corpus = [topic_model_dictionary.doc2bow(text) for text in texts_to_analyze]
     # generate LDA model from the texts_to_analyze and the topic_model_dictionary
     lda_model = gensim.models.ldamodel.LdaModel(topic_model_corpus, num_topics=num_topics_requested, id2word=topic_model_dictionary, passes=20)
-    return lda_model, topic_model_corpus, texts_to_analyze
+    return lda_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze
 
 
 def create_topic_model_dictionary(list_responses):
@@ -51,3 +52,9 @@ def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus, text
         # print(textual_document)
         # print(seed_gensim_topic_model[single_corpus])
     # print()
+
+
+def show_topic_model_visually(seed_gensim_topic_model, seed_gensim_corpus, seed_gensim_dictionary):
+    """ Using an interactive visualization, provide a display of the topic model """
+    vis = pyLDAvis.gensim.prepare(seed_gensim_topic_model, seed_gensim_corpus, seed_gensim_dictionary)
+    pyLDAvis.show(vis)
