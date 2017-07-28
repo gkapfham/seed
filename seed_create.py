@@ -21,17 +21,26 @@ def create_mailing_list(seed_dictionary_list):
 
 def create_fact_answer_list(seed_dictionary_list):
     """ Create the list of all of the answers to the FACT question """
-    fact_answers_list = []
+    answers_list = []
     for current_seed_dictionary in seed_dictionary_list:
         current_fact = current_seed_dictionary[seed_lookup.QUESITON_FACT]
-        fact_answers_list.append(current_fact)
-    return fact_answers_list
+        answers_list.append(current_fact)
+    return answers_list
 
 
 def create_advice_answer_list(seed_dictionary_list):
     """ Create the list of all of the answers to the ADVICE question """
-    fact_answers_list = []
+    answers_list = []
     for current_seed_dictionary in seed_dictionary_list:
         current_fact = current_seed_dictionary[seed_lookup.QUESTION_ADVICE]
-        fact_answers_list.append(current_fact)
-    return fact_answers_list
+        answers_list.append(current_fact)
+    return answers_list
+
+
+def create_challenge_answer_list(seed_dictionary_list):
+    """ Create the list of all of the answers to the CHALLENGE question """
+    answers_list = []
+    for current_seed_dictionary in seed_dictionary_list:
+        current_fact = current_seed_dictionary[seed_lookup.QUESTION_CHALLENGE]
+        answers_list.append(current_fact)
+    return answers_list
