@@ -26,6 +26,7 @@ def parse_seed_arguments(args):
 
     seed_parser.add_argument("--num-topics",
                              help="Number of topics in the LDA model",
+                             type=int,
                              required=False)
 
     seed_parser.add_argument("--create-list",
@@ -68,6 +69,19 @@ def display_welcome_message():
     print("SEED: Educational Discussions with Software Engineers")
     print("http://www.cs.allegheny.edu/sites/gkapfham/seed/")
     print()
+
+
+def perform_gensim_analysis(seed_arguments, response_list):
+    """ Use seed_gensim functions to create and analyze a topic model """
+    if seed_arguments.num_topics is not None:
+        num_topics_requested = seed_arguments.num_topics
+    else:
+        num_topics_requested = DEFAULT_TOPIC_NUMBER
+    gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
+    seed_gensim.show_topic_model_textually(gensim_topic_model,
+                                            topic_model_corpus,
+                                            texts_to_analyze,
+                                            num_topics=num_topics_requested)
 
 
 if __name__ == '__main__':
@@ -114,14 +128,6 @@ if __name__ == '__main__':
             seed_display.seed_display_sample(seed_dictionary_list)
         # TASK: Analyze the responses to the 'fact' question
         elif seed_arguments.analyze_facts is True:
-            if seed_arguments is not None:
-                num_topics = seed_arguments.num_topics
-            else:
-                num_topics = DEFAULT_TOPIC_NUMBER
             seed_dictionary_list = seed_download.seed_load()
             fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
-            gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(fact_response_list, num_topics)
-            seed_gensim.show_topic_model_textually(gensim_topic_model,
-                                                   topic_model_corpus,
-                                                   texts_to_analyze,
-                                                   num_topics=5)
+            perform_gensim_analysis(seed_arguments, fact_response_list)
