@@ -21,7 +21,7 @@ def parse_seed_arguments(args):
                              required=False)
 
     seed_parser.add_argument("--analyze-facts",
-                             help="Answer the 'fact' question responses",
+                             help="Analyze responses to the 'fact' question",
                              action="store_true")
 
     seed_parser.add_argument("--create-list",
@@ -112,4 +112,5 @@ if __name__ == '__main__':
         elif seed_arguments.analyze_facts is True:
             seed_dictionary_list = seed_download.seed_load()
             fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
-            seed_gensim.create_topic_model(fact_response_list)
+            gensim_topic_model = seed_gensim.create_topic_model(fact_response_list)
+            print(gensim_topic_model)
