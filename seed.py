@@ -57,6 +57,10 @@ def parse_seed_arguments(args):
                              help="Verbose mode",
                              action="store_true")
 
+    seed_parser.add_argument("--visualize",
+                             help="Create an interactive visualization",
+                             action="store_true")
+
     # verify the arguments, printing help message if they are wrong
     seed_arguments = seed_parser.parse_args(args)
     return seed_arguments, seed_parser
@@ -85,12 +89,15 @@ def perform_gensim_analysis(seed_arguments, response_list):
         num_topics_requested = seed_arguments.num_topics
     else:
         num_topics_requested = DEFAULT_TOPIC_NUMBER
-
-    gensim_topic_model, topic_model_corpus, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
+    gensim_topic_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
     seed_gensim.show_topic_model_textually(gensim_topic_model,
                                            topic_model_corpus,
                                            texts_to_analyze,
                                            num_topics=num_topics_requested)
+    if seed_arguments.visualize is True:
+        seed_gensim.show_topic_model_visually(gensim_topic_model,
+                                              topic_model_corpus,
+                                              topic_model_dictionary)
 
 
 if __name__ == '__main__':
