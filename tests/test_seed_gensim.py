@@ -14,4 +14,5 @@ def test_seed_gensim_creates_dictionary():
     fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
     topic_model_dictionary, texts_to_analyze = seed_gensim.create_topic_model_dictionary(fact_response_list)
     assert topic_model_dictionary is not None
+    assert texts_to_analyze is not None
     assert len(topic_model_dictionary.keys()) != 0
