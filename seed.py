@@ -84,12 +84,24 @@ def parse_seed_arguments(args):
     return seed_arguments, seed_parser
 
 
+def verify_performing_lda(args):
+    """ Checks if the command-line arguments ask for LDA """
+    performing_lda = False
+    if args.analyze_advice is True or args.analyze_challenge is True or args.analyze_facts is True:
+        performing_lda = True
+    return performing_lda
+
+
 def verify_seed_arguments(args):
     """ Checks if the seed_arguments are correct """
     verified_arguments = True
     if args.download_json is not False and args.token is None:
         verified_arguments = False
     elif args.create_list is not False and args.token is None:
+        verified_arguments = False
+    elif args.num_topics is not None and verify_performing_lda(args) is False:
+        verified_arguments = False
+    elif args.visualize is not False and verify_performing_lda(args) is False:
         verified_arguments = False
     return verified_arguments
 
