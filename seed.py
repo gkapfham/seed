@@ -12,6 +12,9 @@ import seed_gensim
 INDENT = "  "
 DEFAULT_TOPIC_NUMBER = 5
 
+SEED_HOME = "SEED_HOME"
+SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
+
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
