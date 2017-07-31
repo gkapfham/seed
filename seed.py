@@ -12,7 +12,7 @@ import seed_gensim
 
 INDENT = "  "
 SLASH = "/"
-DEFAULT_TOPIC_NUMBER = 5
+DEFAULT_TOPIC_NUMBER = 3
 
 SEED_HOME = "SEED_HOME"
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
@@ -44,6 +44,7 @@ def parse_seed_arguments(args):
         "--num-topics",
         help="Number of topics in the LDA model",
         type=int,
+        default=DEFAULT_TOPIC_NUMBER,
         required=False)
 
     seed_parser.add_argument(
@@ -97,8 +98,6 @@ def get_seed_home():
         seed_home = os.getcwd() + SLASH
         had_to_set = True
     return seed_home, had_to_set
-
-
 
 
 def verify_performing_lda(args):
