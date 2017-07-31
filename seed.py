@@ -11,6 +11,7 @@ import seed_process
 import seed_gensim
 
 INDENT = "  "
+SLASH = "/"
 DEFAULT_TOPIC_NUMBER = 5
 
 SEED_HOME = "SEED_HOME"
@@ -104,6 +105,16 @@ def verify_seed_arguments(args):
     elif args.visualize is not False and verify_performing_lda(args) is False:
         verified_arguments = False
     return verified_arguments
+
+
+def verify_seed_home():
+    """ Verifies that the SEED_HOME environment variable is set correctly """
+    verified_seed_home = False
+    current_seed_home = get_seed_home()
+    if current_seed_home is not None and current_seed_home.endswith(
+            SLASH) is True:
+        verified_seed_home = True
+    return verified_seed_home
 
 
 def display_welcome_message():
