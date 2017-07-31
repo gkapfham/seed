@@ -8,6 +8,12 @@ NOT_VERIFIED = False
 
 
 @pytest.fixture
+def no_seed_args():
+    """Return no command-line arguments"""
+    return []
+
+
+@pytest.fixture
 def verifiable_seed_args():
     """Return arguments that are verifiable"""
     return ['--token', 'SimpleFormToken']
@@ -148,4 +154,11 @@ def test_seed_not_verified_no_lda_numtopics(nonverifiable_seed_args_no_lda_with_
     assert seed_args_verified == NOT_VERIFIED
 
 
-
+def test_default_argument_values_correct(no_seed_args):
+    """The default command-line arguments are correct"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        no_seed_args)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == NOT_VERIFIED
+    assert seed_arguments.num_topics == 3
+    assert seed_arguments.num_passes == 10
