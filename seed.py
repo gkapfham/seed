@@ -27,11 +27,15 @@ def get_seed_simpleform_token():
 def get_seed_home():
     """ Returns the SEED_HOME """
     current_seed_home = os.environ.get(SEED_HOME)
-    if current_seed_home is not None:
+    had_to_set = False
+    # the current SEED_HOME is acceptable, so use it
+    if verify_seed_home(current_seed_home) is not False:
         seed_home = current_seed_home
+    # the current SEED_HOME is not okay, so guess at one
     else:
         seed_home = os.getcwd() + SLASH
-    return seed_home
+        had_to_set = True
+    return seed_home, had_to_set
 
 
 def parse_seed_arguments(args):
@@ -111,10 +115,9 @@ def verify_seed_arguments(args):
     return verified_arguments
 
 
-def verify_seed_home():
+def verify_seed_home(current_seed_home):
     """ Verifies that the SEED_HOME environment variable is set correctly """
     verified_seed_home = False
-    current_seed_home = get_seed_home()
     if current_seed_home is not None and current_seed_home.endswith(
             SLASH) is True:
         verified_seed_home = True
@@ -148,11 +151,11 @@ def perform_gensim_analysis(seed_arguments, response_list):
 
 if __name__ == '__main__':
     display_welcome_message()
-    # verify that the SEED_HOME environment variable is set
-    seed_home_verified = verify_seed_home()
-    if seed_home_verified is False:
-        print(SEED_HOME, "is not set or not set with a trailing slash.")
-        sys.exit()
+    current_seed_home, had_to_set = get_seed_home()
+    if had_to_set is True:
+        print(INDENT + SEED_HOME, "is not set or not set with a trailing slash.")
+        print(INDENT + "Using", current_seed_home, "instead")
+        print()
     # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
     did_verify_arguments = verify_seed_arguments(seed_arguments)
