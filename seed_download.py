@@ -35,7 +35,7 @@ def seed_save_mailing_list(list_of_emails):
 
 
 def seed_load():
-    """ Save the list of dictionaries to the specified file """
+    """ Reads the list of dictionaries from the specified file """
     with open(JSON_FILENAME, 'r') as file_output:
         seed_json = json.load(file_output)
     return seed_json
