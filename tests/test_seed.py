@@ -58,7 +58,7 @@ def nonverifiable_seed_args_no_lda_with_visualize():
 @pytest.fixture
 def nonverifiable_seed_args_no_lda_with_num_topics():
     """Return arguments that are not verifiable because no LDA"""
-    return ['--num-topics', '3']
+    return ['--num-topics', '5']
 
 
 def test_seed_empty_test():
@@ -159,6 +159,6 @@ def test_default_argument_values_correct(no_seed_args):
     seed_arguments, seed_parser = seed.parse_seed_arguments(
         no_seed_args)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
-    assert seed_args_verified == NOT_VERIFIED
+    assert seed_args_verified == VERIFIED
     assert seed_arguments.num_topics == 3
     assert seed_arguments.num_passes == 10
