@@ -162,3 +162,5 @@ def test_default_argument_values_correct(no_seed_args):
     assert seed_args_verified == VERIFIED
     assert seed_arguments.num_topics == 3
     assert seed_arguments.num_passes == 10
+    assert seed_arguments.alpha == seed.DEFAULT_ALPHA
+    assert seed_arguments.eta == seed.DEFAULT_ETA
