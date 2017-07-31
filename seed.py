@@ -15,6 +15,13 @@ SLASH = "/"
 DEFAULT_TOPIC_NUMBER = 3
 DEFAULT_PASS_NUMBER = 10
 
+SYMMETRIC = "symmetric"
+ASYMMETRIC = "asymmetric"
+AUTO = "auto"
+
+DEFAULT_ALPHA = SYMMETRIC
+DEFAULT_ETA = SYMMETRIC
+
 SEED_HOME = "SEED_HOME"
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
 
@@ -54,6 +61,13 @@ def parse_seed_arguments(args):
         help="Passes when creating the LDA model",
         type=int,
         default=DEFAULT_PASS_NUMBER,
+        required=False)
+
+    seed_parser.add_argument(
+        "--alpha",
+        help="Alpha when creating the LDA model",
+        choices=[AUTO, ASYMMETRIC, SYMMETRIC],
+        default=DEFAULT_ALPHA,
         required=False)
 
     seed_parser.add_argument(
