@@ -43,6 +43,11 @@ def create_topic_model_dictionary(list_responses):
         tokens = tokenizer.tokenize(raw)
         # remove the stop words from tokens
         stopped_tokens = [i for i in tokens if not i in en_stop]
+        stopped_tokens = [i for i in stopped_tokens if not i.isnumeric()]
+        stopped_tokens = [i for i in stopped_tokens if len(i) > 1]
+
+        # remove the numbers from the tokens
+        # stopped_tokens = [i for i in tokens if not i.isnumeric()]
         # stem the tokens
         # stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
         stemmed_tokens = [
