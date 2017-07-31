@@ -1,6 +1,7 @@
 """ seed.py downloads a JSON file from SimpleForm and then analyzes it """
 
 import argparse
+import os
 import sys
 
 import seed_create
@@ -14,6 +15,18 @@ DEFAULT_TOPIC_NUMBER = 5
 
 SEED_HOME = "SEED_HOME"
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
+
+
+def get_seed_simpleform_token():
+    """ Returns the SEED_SIMPLEFORM_TOKEN """
+    simple_form_token = os.environ.get(SEED_SIMPLEFORM_TOKEN)
+    return simple_form_token
+
+
+def get_seed_home():
+    """ Returns the SEED_HOME"""
+    seed_home = os.environ.get(SEED_HOME)
+    return seed_home
 
 
 def parse_seed_arguments(args):
