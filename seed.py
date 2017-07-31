@@ -162,7 +162,7 @@ if __name__ == '__main__':
     if had_to_set is True:
         print(INDENT + SEED_HOME,
               "is not set or not set with a trailing slash.")
-        print(INDENT + "Using", current_seed_home, "instead")
+        print(INDENT + "Using", current_seed_home, "instead.")
         print()
     # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
