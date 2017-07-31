@@ -142,6 +142,12 @@ def verify_seed_arguments(args):
     elif args.num_topics != DEFAULT_TOPIC_NUMBER and verify_performing_lda(
             args) is False:
         verified_arguments = False
+    elif args.alpha != DEFAULT_ALPHA and verify_performing_lda(
+            args) is False:
+        verified_arguments = False
+    elif args.eta != DEFAULT_ETA and verify_performing_lda(
+            args) is False:
+        verified_arguments = False
     elif args.visualize is not False and verify_performing_lda(args) is False:
         verified_arguments = False
     return verified_arguments
