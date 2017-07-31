@@ -22,7 +22,8 @@ def create_topic_model(list_responses, num_topics_requested):
         topic_model_corpus,
         num_topics=num_topics_requested,
         id2word=topic_model_dictionary,
-        passes=20)
+        eta='auto',
+        passes=100)
     return lda_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze
 
 
@@ -56,6 +57,8 @@ def create_topic_model_dictionary(list_responses):
 def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus,
                                texts_to_analyze, num_topics):
     """ Using only textual output provide a basic display of the topic model """
+
+    print("alpha =", seed_gensim_topic_model.alpha)
     print(seed_gensim_topic_model)
     print(seed_gensim_topic_model.print_topics(num_topics))
     print()
