@@ -71,6 +71,13 @@ def parse_seed_arguments(args):
         required=False)
 
     seed_parser.add_argument(
+        "--eta",
+        help="Eta when creating the LDA model",
+        choices=[AUTO, SYMMETRIC],
+        default=DEFAULT_ETA,
+        required=False)
+
+    seed_parser.add_argument(
         "--create-list", help="Create the mailing list", action="store_true")
 
     seed_parser.add_argument(
