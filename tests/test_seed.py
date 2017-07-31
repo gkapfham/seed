@@ -61,6 +61,18 @@ def nonverifiable_seed_args_no_lda_with_num_topics():
     return ['--num-topics', '5']
 
 
+@pytest.fixture
+def nonverifiable_seed_args_incorrect_alpha():
+    """Return arguments that are not verifiable because incorrect alpha"""
+    return ['--alpha', 'auto111']
+
+
+@pytest.fixture
+def verifiable_seed_args_correct_alpha():
+    """Return arguments that are verifiable because correct alpha"""
+    return ['--alpha', 'auto']
+
+
 def test_seed_empty_test():
     """Run an empty test to ensure test harness working"""
     return "empty"
@@ -150,6 +162,24 @@ def test_seed_not_verified_no_lda_numtopics(nonverifiable_seed_args_no_lda_with_
     """Run seed with a specified token and it is not verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
         nonverifiable_seed_args_no_lda_with_num_topics)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == NOT_VERIFIED
+
+
+def test_seed_not_verified_incorrect_alpha(nonverifiable_seed_args_incorrect_alpha):
+    """Run seed with a specified token and it is not verified"""
+    try:
+        seed_arguments, seed_parser = seed.parse_seed_arguments(
+            nonverifiable_seed_args_incorrect_alpha)
+        seed.verify_seed_arguments(seed_arguments)
+    except SystemExit:
+        pass
+    assert True
+
+def test_seed_verified_correct_alpha(verifiable_seed_args_correct_alpha):
+    """Run seed with a specified token and it is not verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        verifiable_seed_args_correct_alpha)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == NOT_VERIFIED
 
