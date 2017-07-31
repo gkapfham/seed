@@ -10,6 +10,10 @@ import seed_gensim
 VERIFIED = True
 NOT_VERIFIED = False
 
+slow = pytest.mark.skipif(
+    not pytest.config.getoption("--runslow"),
+    reason="needs the --runslow option to run")
+
 
 @pytest.fixture
 def verifiable_seed_args_facts():
@@ -17,6 +21,7 @@ def verifiable_seed_args_facts():
     return ['--analyze-facts', "--num-passes", "1", "--num-topics", "2"]
 
 
+@slow
 def test_seed_gensim_creates_dictionary():
     """ Determine if seed_gensim can create a not-None dictionary """
     seed_dictionary_list = seed_download.seed_load()
@@ -29,6 +34,7 @@ def test_seed_gensim_creates_dictionary():
     assert len(topic_model_dictionary.keys()) != 0
 
 
+@slow
 def test_seed_gensim_creates_model(verifiable_seed_args_facts):
     """ Determine if seed_gensim can create a not-None model with LDA """
     seed_arguments, seed_parser = seed.parse_seed_arguments(
