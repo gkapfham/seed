@@ -67,6 +67,12 @@ def parse_seed_arguments(args):
         required=False)
 
     seed_parser.add_argument(
+        "--num-passes",
+        help="Number of passes when creating the LDA model",
+        type=int,
+        required=False)
+
+    seed_parser.add_argument(
         "--create-list", help="Create the mailing list", action="store_true")
 
     seed_parser.add_argument(
@@ -138,7 +144,7 @@ def perform_gensim_analysis(seed_arguments, response_list):
     else:
         num_topics_requested = DEFAULT_TOPIC_NUMBER
     gensim_topic_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze = seed_gensim.create_topic_model(
-        response_list, num_topics_requested)
+        seed_arguments, response_list)
     seed_gensim.show_topic_model_textually(
         gensim_topic_model,
         topic_model_corpus,
@@ -153,7 +159,8 @@ if __name__ == '__main__':
     display_welcome_message()
     current_seed_home, had_to_set = get_seed_home()
     if had_to_set is True:
-        print(INDENT + SEED_HOME, "is not set or not set with a trailing slash.")
+        print(INDENT + SEED_HOME,
+              "is not set or not set with a trailing slash.")
         print(INDENT + "Using", current_seed_home, "instead")
         print()
     # parse and verify the arguments
