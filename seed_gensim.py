@@ -9,7 +9,7 @@ import gensim
 import pyLDAvis.gensim
 
 
-def create_topic_model(list_responses, num_topics_requested):
+def create_topic_model(seed_arguments, list_responses):
     """ Using LDA from gensim, create the topic model from the list of responses """
     topic_model_dictionary, texts_to_analyze = create_topic_model_dictionary(
         list_responses)
@@ -20,10 +20,10 @@ def create_topic_model(list_responses, num_topics_requested):
     # generate LDA model from the texts_to_analyze and the topic_model_dictionary
     lda_model = gensim.models.ldamodel.LdaModel(
         topic_model_corpus,
-        num_topics=num_topics_requested,
         id2word=topic_model_dictionary,
-        eta='auto',
-        passes=100)
+        num_topics=seed_arguments.num_topics,
+        passes=seed_arguments.num_passes,
+        eta='auto')
     return lda_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze
 
 
