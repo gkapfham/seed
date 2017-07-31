@@ -59,13 +59,6 @@ def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus,
     print(seed_gensim_topic_model)
     print(seed_gensim_topic_model.print_topics(num_topics))
     print()
-    # print("Analysis:")
-    # for single_corpus, textual_document in zip(seed_gensim_corpus, texts_to_analyze):
-
-# print(single_corpus)
-# print(textual_document)
-# print(seed_gensim_topic_model[single_corpus])
-# print()
 
 
 def show_topic_model_visually(seed_gensim_topic_model, seed_gensim_corpus,
