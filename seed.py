@@ -118,7 +118,8 @@ def verify_seed_arguments(args):
         verified_arguments = False
     elif args.create_list is not False and args.token is None:
         verified_arguments = False
-    elif args.num_topics != DEFAULT_TOPIC_NUMBER and verify_performing_lda(args) is False:
+    elif args.num_topics != DEFAULT_TOPIC_NUMBER and verify_performing_lda(
+            args) is False:
         verified_arguments = False
     elif args.visualize is not False and verify_performing_lda(args) is False:
         verified_arguments = False
