@@ -3,6 +3,8 @@
 import json
 import requests
 
+import seed
+
 JSON_FILENAME = "seed.json"
 MAILING_LIST_FILENAME = "recipients.csv"
 
@@ -36,6 +38,6 @@ def seed_save_mailing_list(list_of_emails):
 
 def seed_load():
     """ Reads the list of dictionaries from the specified file """
-    with open(JSON_FILENAME, 'r') as file_output:
+    with open(seed.get_seed_home() + JSON_FILENAME, 'r') as file_output:
         seed_json = json.load(file_output)
     return seed_json
