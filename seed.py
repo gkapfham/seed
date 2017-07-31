@@ -12,54 +12,56 @@ import seed_gensim
 INDENT = "  "
 DEFAULT_TOPIC_NUMBER = 5
 
+
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
     seed_parser = argparse.ArgumentParser()
 
-    seed_parser.add_argument("--token",
-                             help="SimpleForm API token",
-                             required=False)
+    seed_parser.add_argument(
+        "--token", help="SimpleForm API token", required=False)
 
-    seed_parser.add_argument("--analyze-advice",
-                             help="Analyze responses to the 'advice' question",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--analyze-advice",
+        help="Analyze responses to the 'advice' question",
+        action="store_true")
 
-    seed_parser.add_argument("--analyze-challenge",
-                             help="Analyze responses to the 'challenge' question",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--analyze-challenge",
+        help="Analyze responses to the 'challenge' question",
+        action="store_true")
 
-    seed_parser.add_argument("--analyze-facts",
-                             help="Analyze responses to the 'fact' question",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--analyze-facts",
+        help="Analyze responses to the 'fact' question",
+        action="store_true")
 
-    seed_parser.add_argument("--num-topics",
-                             help="Number of topics in the LDA model",
-                             type=int,
-                             required=False)
+    seed_parser.add_argument(
+        "--num-topics",
+        help="Number of topics in the LDA model",
+        type=int,
+        required=False)
 
-    seed_parser.add_argument("--create-list",
-                             help="Create the mailing list",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--create-list", help="Create the mailing list", action="store_true")
 
-    seed_parser.add_argument("--download-json",
-                             help="Download the JSON file",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--download-json", help="Download the JSON file", action="store_true")
 
-    seed_parser.add_argument("--show-respondents",
-                             help="Show the SEED respondents",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--show-respondents",
+        help="Show the SEED respondents",
+        action="store_true")
 
-    seed_parser.add_argument("--show-sample",
-                             help="Show a SEED sample",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--show-sample", help="Show a SEED sample", action="store_true")
 
-    seed_parser.add_argument("--verbose",
-                             help="Verbose mode",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--verbose", help="Verbose mode", action="store_true")
 
-    seed_parser.add_argument("--visualize",
-                             help="Create an interactive visualization",
-                             action="store_true")
+    seed_parser.add_argument(
+        "--visualize",
+        help="Create an interactive visualization",
+        action="store_true")
 
     # verify the arguments, printing help message if they are wrong
     seed_arguments = seed_parser.parse_args(args)
@@ -89,15 +91,16 @@ def perform_gensim_analysis(seed_arguments, response_list):
         num_topics_requested = seed_arguments.num_topics
     else:
         num_topics_requested = DEFAULT_TOPIC_NUMBER
-    gensim_topic_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze = seed_gensim.create_topic_model(response_list, num_topics_requested)
-    seed_gensim.show_topic_model_textually(gensim_topic_model,
-                                           topic_model_corpus,
-                                           texts_to_analyze,
-                                           num_topics=num_topics_requested)
+    gensim_topic_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze = seed_gensim.create_topic_model(
+        response_list, num_topics_requested)
+    seed_gensim.show_topic_model_textually(
+        gensim_topic_model,
+        topic_model_corpus,
+        texts_to_analyze,
+        num_topics=num_topics_requested)
     if seed_arguments.visualize is True:
-        seed_gensim.show_topic_model_visually(gensim_topic_model,
-                                              topic_model_corpus,
-                                              topic_model_dictionary)
+        seed_gensim.show_topic_model_visually(
+            gensim_topic_model, topic_model_corpus, topic_model_dictionary)
 
 
 if __name__ == '__main__':
@@ -120,19 +123,26 @@ if __name__ == '__main__':
         # save the final list of dictionaries to a JSON file
         if seed_arguments.download_json is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
-            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
-            print(INDENT, "Downloaded a total of", len(seed_internal_dictionary_list), "entries")
-            seed_process.seed_process_remove_email_subscriptions(seed_internal_dictionary_list)
-            seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
-            print(INDENT, "Saved a total of", len(seed_internal_dictionary_list), "entries")
+            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(
+                seed_json)
+            print(INDENT, "Downloaded a total of",
+                  len(seed_internal_dictionary_list), "entries")
+            seed_process.seed_process_remove_email_subscriptions(
+                seed_internal_dictionary_list)
+            seed_process.seed_process_remove_emails(
+                seed_internal_dictionary_list)
+            print(INDENT, "Saved a total of",
+                  len(seed_internal_dictionary_list), "entries")
             seed_download.seed_save_json(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
         # TASK: Create the mailing list for the SEED respondents
         elif seed_arguments.create_list is True:
             seed_json = seed_download.seed_download(seed_arguments.token)
-            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(seed_json)
-            list_of_email = seed_create.create_mailing_list(seed_internal_dictionary_list)
+            seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(
+                seed_json)
+            list_of_email = seed_create.create_mailing_list(
+                seed_internal_dictionary_list)
             seed_download.seed_save_mailing_list(list_of_email)
         # TASK: Show all of the respondents to the SEED survey
         elif seed_arguments.show_respondents is True:
@@ -145,15 +155,18 @@ if __name__ == '__main__':
         # TASK: Analyze the responses to the 'fact' question
         elif seed_arguments.analyze_facts is True:
             seed_dictionary_list = seed_download.seed_load()
-            fact_response_list = seed_create.create_fact_answer_list(seed_dictionary_list)
+            fact_response_list = seed_create.create_fact_answer_list(
+                seed_dictionary_list)
             perform_gensim_analysis(seed_arguments, fact_response_list)
         # TASK: Analyze the responses to the 'advice' question
         elif seed_arguments.analyze_advice is True:
             seed_dictionary_list = seed_download.seed_load()
-            advice_response_list = seed_create.create_advice_answer_list(seed_dictionary_list)
+            advice_response_list = seed_create.create_advice_answer_list(
+                seed_dictionary_list)
             perform_gensim_analysis(seed_arguments, advice_response_list)
         # TASK: Analyze the responses to the 'advice' question
         elif seed_arguments.analyze_challenge is True:
             seed_dictionary_list = seed_download.seed_load()
-            challenge_response_list = seed_create.create_challenge_answer_list(seed_dictionary_list)
+            challenge_response_list = seed_create.create_challenge_answer_list(
+                seed_dictionary_list)
             perform_gensim_analysis(seed_arguments, challenge_response_list)
