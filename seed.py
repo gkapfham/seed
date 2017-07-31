@@ -13,6 +13,7 @@ import seed_gensim
 INDENT = "  "
 SLASH = "/"
 DEFAULT_TOPIC_NUMBER = 3
+DEFAULT_PASS_NUMBER = 10
 
 SEED_HOME = "SEED_HOME"
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
@@ -20,37 +21,39 @@ SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
 
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
-    seed_parser = argparse.ArgumentParser()
+    seed_parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     seed_parser.add_argument(
         "--token", help="SimpleForm API token", required=False)
 
     seed_parser.add_argument(
         "--analyze-advice",
-        help="Analyze responses to the 'advice' question",
+        help="Analyze the 'advice' question",
         action="store_true")
 
     seed_parser.add_argument(
         "--analyze-challenge",
-        help="Analyze responses to the 'challenge' question",
+        help="Analyze the 'challenge' question",
         action="store_true")
 
     seed_parser.add_argument(
         "--analyze-facts",
-        help="Analyze responses to the 'fact' question",
+        help="Analyze the 'fact' question",
         action="store_true")
 
     seed_parser.add_argument(
         "--num-topics",
-        help="Number of topics in the LDA model",
+        help="Topics in the LDA model",
         type=int,
         default=DEFAULT_TOPIC_NUMBER,
         required=False)
 
     seed_parser.add_argument(
         "--num-passes",
-        help="Number of passes when creating the LDA model",
+        help="Passes when creating the LDA model",
         type=int,
+        default=DEFAULT_PASS_NUMBER,
         required=False)
 
     seed_parser.add_argument(
