@@ -18,26 +18,6 @@ SEED_HOME = "SEED_HOME"
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
 
 
-def get_seed_simpleform_token():
-    """ Returns the SEED_SIMPLEFORM_TOKEN """
-    simple_form_token = os.environ.get(SEED_SIMPLEFORM_TOKEN)
-    return simple_form_token
-
-
-def get_seed_home():
-    """ Returns the SEED_HOME """
-    current_seed_home = os.environ.get(SEED_HOME)
-    had_to_set = False
-    # the current SEED_HOME is acceptable, so use it
-    if verify_seed_home(current_seed_home) is not False:
-        seed_home = current_seed_home
-    # the current SEED_HOME is not okay, so guess at one
-    else:
-        seed_home = os.getcwd() + SLASH
-        had_to_set = True
-    return seed_home, had_to_set
-
-
 def parse_seed_arguments(args):
     """ Parses the arguments provided on the command-line """
     seed_parser = argparse.ArgumentParser()
@@ -97,6 +77,28 @@ def parse_seed_arguments(args):
     # verify the arguments, printing help message if they are wrong
     seed_arguments = seed_parser.parse_args(args)
     return seed_arguments, seed_parser
+
+
+def get_seed_simpleform_token():
+    """ Returns the SEED_SIMPLEFORM_TOKEN """
+    simple_form_token = os.environ.get(SEED_SIMPLEFORM_TOKEN)
+    return simple_form_token
+
+
+def get_seed_home():
+    """ Returns the SEED_HOME """
+    current_seed_home = os.environ.get(SEED_HOME)
+    had_to_set = False
+    # the current SEED_HOME is acceptable, so use it
+    if verify_seed_home(current_seed_home) is not False:
+        seed_home = current_seed_home
+    # the current SEED_HOME is not okay, so guess at one
+    else:
+        seed_home = os.getcwd() + SLASH
+        had_to_set = True
+    return seed_home, had_to_set
+
+
 
 
 def verify_performing_lda(args):
