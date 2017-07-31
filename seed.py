@@ -26,7 +26,11 @@ def get_seed_simpleform_token():
 
 def get_seed_home():
     """ Returns the SEED_HOME """
-    seed_home = os.environ.get(SEED_HOME)
+    current_seed_home = os.environ.get(SEED_HOME)
+    if current_seed_home is not None:
+        seed_home = current_seed_home
+    else:
+        seed_home = os.getcwd() + SLASH
     return seed_home
 
 
@@ -144,6 +148,11 @@ def perform_gensim_analysis(seed_arguments, response_list):
 
 if __name__ == '__main__':
     display_welcome_message()
+    # verify that the SEED_HOME environment variable is set
+    seed_home_verified = verify_seed_home()
+    if seed_home_verified is False:
+        print(SEED_HOME, "is not set or not set with a trailing slash.")
+        sys.exit()
     # parse and verify the arguments
     seed_arguments, seed_parser = parse_seed_arguments(sys.argv[1:])
     did_verify_arguments = verify_seed_arguments(seed_arguments)
