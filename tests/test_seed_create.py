@@ -14,7 +14,7 @@ import seed_process
 def verifiable_seed_args():
     """Return arguments that are verifiable with the token specified through the OS"""
     # test case can only pass if the environment variable is set
-    simple_form_token = os.environ.get('SIMPLEFORM_TOKEN')
+    simple_form_token = os.environ.get('SEED_SIMPLEFORM_TOKEN')
     return ['--token', simple_form_token, '--create-list']
 
 
