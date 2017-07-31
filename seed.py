@@ -25,7 +25,7 @@ def get_seed_simpleform_token():
 
 
 def get_seed_home():
-    """ Returns the SEED_HOME"""
+    """ Returns the SEED_HOME """
     seed_home = os.environ.get(SEED_HOME)
     return seed_home
 
