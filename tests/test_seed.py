@@ -114,10 +114,16 @@ def test_seed_home_is_set():
     assert seed_home is not None
 
 
-def test_seed_home_verification_working():
+def test_seed_home_verification_working_verified():
     """Run seed and checks that SEED_HOME verification is working """
-    seed_home_verified = seed.verify_seed_home()
+    seed_home_verified = seed.verify_seed_home("/home/gkapfham/")
     assert seed_home_verified == VERIFIED
+
+
+def test_seed_home_verification_working_notverified():
+    """Run seed and checks that SEED_HOME verification is working """
+    seed_home_verified = seed.verify_seed_home("/home/gkapfham")
+    assert seed_home_verified == NOT_VERIFIED
 
 
 def test_seed_simpleform_is_set():
