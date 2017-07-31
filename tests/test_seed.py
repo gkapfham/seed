@@ -44,9 +44,15 @@ def verifiable_seed_args_facts():
 
 
 @pytest.fixture
-def nonverifiable_seed_args_no_lda():
+def nonverifiable_seed_args_no_lda_with_visualize():
     """Return arguments that are not verifiable because no LDA"""
     return ['--visualize']
+
+
+@pytest.fixture
+def nonverifiable_seed_args_no_lda_with_num_topics():
+    """Return arguments that are not verifiable because no LDA"""
+    return ['--num-topics', '3']
 
 
 def test_seed_empty_test():
@@ -114,9 +120,17 @@ def test_seed_simpleform_is_set():
     assert seed_simpleform is not None
 
 
-def test_seed_not_verified_no_lda(nonverifiable_seed_args_no_lda):
+def test_seed_not_verified_no_lda_visualize(nonverifiable_seed_args_no_lda_with_visualize):
     """Run seed with a specified token and it is not verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
-        nonverifiable_seed_args_no_lda)
+        nonverifiable_seed_args_no_lda_with_visualize)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == NOT_VERIFIED
+
+
+def test_seed_not_verified_no_lda_numtopics(nonverifiable_seed_args_no_lda_with_num_topics):
+    """Run seed with a specified token and it is not verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        nonverifiable_seed_args_no_lda_with_num_topics)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == NOT_VERIFIED
