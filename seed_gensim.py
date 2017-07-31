@@ -57,7 +57,6 @@ def create_topic_model_dictionary(list_responses):
 def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus,
                                texts_to_analyze, num_topics):
     """ Using only textual output provide a basic display of the topic model """
-
     print("alpha =", seed_gensim_topic_model.alpha)
     print(seed_gensim_topic_model)
     print(seed_gensim_topic_model.print_topics(num_topics))
