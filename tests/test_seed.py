@@ -43,6 +43,12 @@ def verifiable_seed_args_facts():
     return ['--analyze-facts']
 
 
+@pytest.fixture
+def nonverifiable_seed_args_no_lda():
+    """Return arguments that are not verifiable because no LDA"""
+    return ['--visualize']
+
+
 def test_seed_empty_test():
     """Run an empty test to ensure test harness working"""
     return "empty"
@@ -106,3 +112,11 @@ def test_seed_simpleform_is_set():
     """ Ensure that the SEED_SIMPLEFORM_TOKEN environment variable is set"""
     seed_simpleform = seed.get_seed_simpleform_token()
     assert seed_simpleform is not None
+
+
+def test_seed_not_verified_no_lda(nonverifiable_seed_args_no_lda):
+    """Run seed with a specified token and it is not verified"""
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        nonverifiable_seed_args_no_lda)
+    seed_args_verified = seed.verify_seed_arguments(seed_arguments)
+    assert seed_args_verified == NOT_VERIFIED
