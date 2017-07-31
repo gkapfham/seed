@@ -1,9 +1,7 @@
 """Test suite for the seed.py module"""
 
-
 import pytest
 import seed
-
 
 VERIFIED = True
 NOT_VERIFIED = False
@@ -38,10 +36,12 @@ def verifiable_seed_args_show_sample():
     """Return arguments that are verifiable because only show_respondents"""
     return ['--show-sample']
 
+
 @pytest.fixture
 def verifiable_seed_args_facts():
     """Return arguments that are verifiable because only analyze_facts"""
     return ['--analyze-facts']
+
 
 def test_seed_empty_test():
     """Run an empty test to ensure test harness working"""
@@ -50,41 +50,59 @@ def test_seed_empty_test():
 
 def test_seed_verified(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        verifiable_seed_args)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
 
 def test_seed_verified_show_respondents(verifiable_seed_args_show_respondents):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_show_respondents)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        verifiable_seed_args_show_respondents)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
 
 def test_seed_verified_show_sample(verifiable_seed_args_show_sample):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_show_sample)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        verifiable_seed_args_show_sample)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
 
 def test_seed_verified_analyze_facts(verifiable_seed_args_facts):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args_facts)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        verifiable_seed_args_facts)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == VERIFIED
 
 
 def test_seed_not_verified_download(not_verifiable_seed_args_download_json):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(not_verifiable_seed_args_download_json)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        not_verifiable_seed_args_download_json)
     were_seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert were_seed_args_verified == NOT_VERIFIED
 
 
 def test_seed_not_verified_list(not_verifiable_seed_args_create_list):
     """Run seed with a specified token and it is verified"""
-    seed_arguments, seed_parser = seed.parse_seed_arguments(not_verifiable_seed_args_create_list)
+    seed_arguments, seed_parser = seed.parse_seed_arguments(
+        not_verifiable_seed_args_create_list)
     were_seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert were_seed_args_verified == NOT_VERIFIED
+
+
+def test_seed_home_is_set():
+    """ Ensure that the SEED_HOME environment variable is set"""
+    seed_home = seed.get_seed_home()
+    assert seed_home is not None
+
+
+def test_seed_simpleform_is_set():
+    """ Ensure that the SEED_SIMPLEFORM_TOKEN environment variable is set"""
+    seed_simpleform = seed.get_seed_simpleform_token()
+    assert seed_simpleform is not None
