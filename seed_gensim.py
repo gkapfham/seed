@@ -23,7 +23,8 @@ def create_topic_model(seed_arguments, list_responses):
         id2word=topic_model_dictionary,
         num_topics=seed_arguments.num_topics,
         passes=seed_arguments.num_passes,
-        eta='auto')
+        alpha=seed_arguments.alpha,
+        eta=seed_arguments.eta)
     return lda_model, topic_model_corpus, topic_model_dictionary, texts_to_analyze
 
 
