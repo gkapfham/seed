@@ -114,6 +114,12 @@ def test_seed_home_is_set():
     assert seed_home is not None
 
 
+def test_seed_home_verification_working():
+    """Run seed and checks that SEED_HOME verification is working """
+    seed_home_verified = seed.verify_seed_home()
+    assert seed_home_verified == VERIFIED
+
+
 def test_seed_simpleform_is_set():
     """ Ensure that the SEED_SIMPLEFORM_TOKEN environment variable is set"""
     seed_simpleform = seed.get_seed_simpleform_token()
@@ -134,3 +140,6 @@ def test_seed_not_verified_no_lda_numtopics(nonverifiable_seed_args_no_lda_with_
         nonverifiable_seed_args_no_lda_with_num_topics)
     seed_args_verified = seed.verify_seed_arguments(seed_arguments)
     assert seed_args_verified == NOT_VERIFIED
+
+
+
