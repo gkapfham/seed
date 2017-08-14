@@ -7,7 +7,7 @@ cache: pip
 install: "pip install -r requirements.txt"
 # install the nltk packages and set environment variable
 before_script:
-  - python -m nltk.downloader all
+  - python -m nltk.downloader wordnet
   - export SEED_HOME="/home/travis/build/gkapfham/seed"
 # command to run tests
 script: pytest tests --runslow
