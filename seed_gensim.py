@@ -42,16 +42,13 @@ def create_topic_model_dictionary(list_responses):
         raw = i.lower()
         tokens = tokenizer.tokenize(raw)
         # remove the stop words from tokens
-        stopped_tokens = [i for i in tokens if not i in en_stop]
-        stopped_tokens = [i for i in stopped_tokens if not i.isnumeric()]
-        stopped_tokens = [i for i in stopped_tokens if len(i) > 1]
-
-        # remove the numbers from the tokens
-        # stopped_tokens = [i for i in tokens if not i.isnumeric()]
+        keep_tokens = [i for i in tokens if not i in en_stop]
+        keep_tokens = [i for i in keep_tokens if not i.isnumeric()]
+        keep_tokens = [i for i in keep_tokens if len(i) > 1]
         # stem the tokens
-        # stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
+        # stemmed_tokens = [p_stemmer.stem(i) for i in keep_tokens]
         stemmed_tokens = [
-            wordnet_lemmatizer.lemmatize(i) for i in stopped_tokens
+            wordnet_lemmatizer.lemmatize(i) for i in keep_tokens
         ]
         # add tokens to list of texts to analyze
         texts_to_analyze.append(stemmed_tokens)
