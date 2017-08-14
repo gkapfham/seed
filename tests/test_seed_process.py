@@ -10,9 +10,9 @@ import seed_process
 
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
 
-slow = pytest.mark.skipif(
-    not pytest.config.getoption("--runslow"),
-    reason="needs the --runslow option to run")
+download = pytest.mark.skipif(
+    not pytest.config.getoption("--rundownload"),
+    reason="needs the --rundownload option to run")
 
 
 @pytest.fixture
@@ -23,7 +23,7 @@ def verifiable_seed_args():
     return ['--token', simple_form_token, '--download-json']
 
 
-@slow
+@download
 def test_dictionary_is_not_none(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
@@ -33,6 +33,7 @@ def test_dictionary_is_not_none(verifiable_seed_args):
     assert seed_internal_dictionary is not None
 
 
+@download
 def test_dictionary_list_after_email_list_removal_is_smaller(verifiable_seed_args):
     """Make sure that the removal of the email subscriptions makes a smaller list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
@@ -46,6 +47,7 @@ def test_dictionary_list_after_email_list_removal_is_smaller(verifiable_seed_arg
     assert len(seed_internal_dictionary_list) < length_internal_dictionary_list
 
 
+@download
 def test_dictionary_list_after_email_address_removal_is_same(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
