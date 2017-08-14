@@ -2,10 +2,16 @@
 language: python
 python:
   - "3.5"
-cache: pip
+# cache: pip
+cache:
+  directories:
+    - $HOME/.pip-cache/
 # command to install dependencies
-install: "pip install -r requirements.txt"
-# install the nltk packages and set environment variable
+install:
+  - pip install --upgrade pip
+  - pip install -r requirements.txt --cache-dir $HOME/.pip-cache
+# install: "pip install -r requirements.txt"
+# install the nltk wordnet package and set environment variable
 before_script:
   - python -m nltk.downloader wordnet
   - export SEED_HOME="/home/travis/build/gkapfham/seed"
