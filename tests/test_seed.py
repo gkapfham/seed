@@ -6,6 +6,10 @@ import seed
 VERIFIED = True
 NOT_VERIFIED = False
 
+download = pytest.mark.skipif(
+    not pytest.config.getoption("--rundownload"),
+    reason="needs the --rundownload option to run")
+
 
 @pytest.fixture
 def no_seed_args():
@@ -144,6 +148,7 @@ def test_seed_home_verification_working_notverified():
     assert seed_home_verified == NOT_VERIFIED
 
 
+@download
 def test_seed_simpleform_is_set():
     """ Ensure that the SEED_SIMPLEFORM_TOKEN environment variable is set"""
     seed_simpleform = seed.get_seed_simpleform_token()
