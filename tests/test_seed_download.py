@@ -14,9 +14,9 @@ NOT_DOWNLOADED = False
 
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
 
-slow = pytest.mark.skipif(
-    not pytest.config.getoption("--runslow"),
-    reason="needs the --runslow option to run")
+download = pytest.mark.skipif(
+    not pytest.config.getoption("--rundownload"),
+    reason="needs the --rundownload option to run")
 
 
 @pytest.fixture
@@ -27,7 +27,7 @@ def verifiable_seed_args():
     return ['--token', simple_form_token, '--download-json']
 
 
-@slow
+@download
 def test_seed_verified_downloaded_something(verifiable_seed_args):
     """Run seed with a specified token and it is verified"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(verifiable_seed_args)
