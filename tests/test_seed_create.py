@@ -9,6 +9,11 @@ import seed_download
 import seed_process
 
 
+download = pytest.mark.skipif(
+    not pytest.config.getoption("--rundownload"),
+    reason="needs the --rundownload option to run")
+
+
 @pytest.fixture
 def verifiable_seed_args():
     """Return arguments that are verifiable with the token specified through the OS"""
@@ -17,6 +22,7 @@ def verifiable_seed_args():
     return ['--token', simple_form_token, '--create-list']
 
 
+@download
 def test_mailing_list_entries_for_each_name(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
@@ -33,6 +39,7 @@ def test_mailing_list_entries_for_each_name(verifiable_seed_args):
     assert length_internal_dictionary_list == len(mailing_list)
 
 
+@download
 def test_fact_responses_for_each_name(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
@@ -52,6 +59,7 @@ def test_fact_responses_for_each_name(verifiable_seed_args):
     assert len(seed_internal_dictionary_list) == len(fact_answers_list)
 
 
+@download
 def test_advice_responses_for_each_name(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
@@ -71,6 +79,7 @@ def test_advice_responses_for_each_name(verifiable_seed_args):
     assert len(seed_internal_dictionary_list) == len(advice_answers_list)
 
 
+@download
 def test_challenge_responses_for_each_name(verifiable_seed_args):
     """Make sure that the removal of the email address makes a same-sized list"""
     seed_arguments, seed_parser = seed.parse_seed_arguments(
