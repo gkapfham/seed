@@ -1,5 +1,4 @@
 import os
-# import pytest
 import sys
 
 # set the system path to contain the previous directory
