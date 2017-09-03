@@ -25,6 +25,17 @@ location and then you would have to type, for instance, `sudo pip install -r
 requirements.txt`. Alternatively, you may choose to install the dependencies by
 typing `pip install --user -r requirements.txt`.
 
+SEED was developed to easily run in conjunction with a [venv-based Python 3
+virtual environment](https://docs.python.org/3/library/venv.html). This means
+that if you are in the directory that contains the `seed` directory then you
+could type `python3 -m venv seed` to create all of the components of a
+venv-based virtual environment in the `seed` directory. Once you complete this
+step, you can type the command `source seed/bin/activate` to activate the
+venv-based virtual environment. Interested in learning more about the basics of
+virtual environments in Python 3? You can read this
+[article](http://www.cs.allegheny.edu/sites/gkapfham/programming/research/idea/2017/07/14/Virtual-Environments/)
+to further develop your understanding of this topic.
+
 ## Testing SEED
 
 SEED uses [Pytest](https://docs.pytest.org/en/latest/) for testing. To run
