@@ -7,8 +7,8 @@ import seed
 import seed_lookup
 import seed_process
 
-
 MARKDOWN_HEADER_MARKER = "---"
+MARKDOWN_QUOTE = "\""
 
 
 def seed_display_respondents(seed_dictionary_list):
@@ -28,9 +28,32 @@ def seed_display_respondents(seed_dictionary_list):
 
 def seed_display_respondent_markdown(seed_dictionary):
     """ Displays the details about a respondent """
+
     print(MARKDOWN_HEADER_MARKER)
-    print(seed_lookup.COMPANY_NAME, ": ", seed_dictionary[seed_lookup.COMPANY_NAME].strip(), sep='')
+    seed_display_markdown_header_entry(seed_lookup.PERSON_NAME, seed_dictionary)
+    seed_display_markdown_header_entry(seed_lookup.COMPANY_NAME, seed_dictionary)
     print(MARKDOWN_HEADER_MARKER)
+
+    # print(
+    #     seed_lookup.COMPANY_NAME,
+    #     ": ",
+    #     MARKDOWN_QUOTE,
+    #     seed_dictionary[seed_lookup.COMPANY_NAME].strip(),
+    #     MARKDOWN_QUOTE,
+    #     sep='')
+
+    # print(MARKDOWN_HEADER_MARKER)
+
+
+def seed_display_markdown_header_entry(seed_entry, seed_dictionary):
+    """ Display a specific header entry """
+    print(
+        seed_entry,
+        ": ",
+        MARKDOWN_QUOTE,
+        seed_dictionary[seed_entry].strip(),
+        MARKDOWN_QUOTE,
+        sep='')
 
 
 def seed_display_sample(seed_dictionary_list):
