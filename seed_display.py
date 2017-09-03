@@ -34,6 +34,10 @@ def seed_display_respondent_markdown(seed_dictionary):
                                        seed_dictionary)
     seed_display_markdown_header_entry(seed_lookup.COMPANY_NAME,
                                        seed_dictionary)
+    seed_display_markdown_header_entry(seed_lookup.TITLE_NAME,
+                                       seed_dictionary)
+    seed_display_markdown_header_entry(seed_lookup.WEB_SITE,
+                                       seed_dictionary)
     print(MARKDOWN_HEADER_MARKER)
 
 
