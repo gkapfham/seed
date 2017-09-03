@@ -68,3 +68,17 @@ def test_dictionary_list_after_email_address_removal_is_same(
     seed_process.seed_process_remove_emails(seed_internal_dictionary_list)
     assert len(
         seed_internal_dictionary_list) == length_internal_dictionary_list
+
+
+def test_sort_dictionary_list():
+    """Make sure that the dictionary list is sorted"""
+    dictionary_list = [{
+        'name': 'Jessica',
+        'age': 10
+    }, {
+        'name': 'Gregory',
+        'age': 10
+    }]
+    sorted_dictionary_list = seed_process.seed_process_sort_dictionary_list(
+        dictionary_list, "name")
+    assert len(sorted_dictionary_list) == len(dictionary_list)
