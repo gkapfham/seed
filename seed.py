@@ -88,6 +88,8 @@ def parse_seed_arguments(args):
         help="Show the SEED respondents",
         action="store_true")
 
+    seed_parser.add_argument('--show-respondent', nargs='+', type=str)
+
     seed_parser.add_argument(
         "--show-sample", help="Show a SEED sample", action="store_true")
 
