@@ -53,6 +53,13 @@ because of the fact that they invoke functions that use natural language
 processing libraries. If you would also like to run those tests along with those
 that complete more quickly, then you can type `pytest tests --runslow`.
 
+## Using SEED
+
+If you would like to learn more about how to use SEED, please type `python3
+seed.py --help` and review the command-line options. If you would, for instance,
+like to see who has responded to the SEED survey by processing the provided
+`seed.json` file you can type `python3 seed.py --show-respondents`.
+
 ## Problems or Praise
 
 If you have any problems with installing or using SEED, then please create an
