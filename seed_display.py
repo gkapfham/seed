@@ -30,19 +30,11 @@ def seed_display_respondent_markdown(seed_dictionary):
     """ Displays the details about a respondent """
 
     print(MARKDOWN_HEADER_MARKER)
-    seed_display_markdown_header_entry(seed_lookup.PERSON_NAME, seed_dictionary)
-    seed_display_markdown_header_entry(seed_lookup.COMPANY_NAME, seed_dictionary)
+    seed_display_markdown_header_entry(seed_lookup.PERSON_NAME,
+                                       seed_dictionary)
+    seed_display_markdown_header_entry(seed_lookup.COMPANY_NAME,
+                                       seed_dictionary)
     print(MARKDOWN_HEADER_MARKER)
-
-    # print(
-    #     seed_lookup.COMPANY_NAME,
-    #     ": ",
-    #     MARKDOWN_QUOTE,
-    #     seed_dictionary[seed_lookup.COMPANY_NAME].strip(),
-    #     MARKDOWN_QUOTE,
-    #     sep='')
-
-    # print(MARKDOWN_HEADER_MARKER)
 
 
 def seed_display_markdown_header_entry(seed_entry, seed_dictionary):
