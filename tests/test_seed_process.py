@@ -8,6 +8,8 @@ import seed_download
 import seed_process
 
 SEED_SIMPLEFORM_TOKEN = "SEED_SIMPLEFORM_TOKEN"
+SEED_RESPONDENT = "Rebecca Dilla"
+SEED_FIELD_COUNT = 12
 
 download = pytest.mark.skipif(
     not pytest.config.getoption("--rundownload"),
@@ -82,3 +84,11 @@ def test_sort_dictionary_list():
     sorted_dictionary_list = seed_process.seed_process_sort_dictionary_list(
         dictionary_list, "name")
     assert len(sorted_dictionary_list) == len(dictionary_list)
+
+
+def test_extract_dictionary_from_list():
+    """Checks that you can extract a respondent from the list"""
+    seed_dictionary_list = seed_download.seed_load()
+    respondent_dictionary = seed_process.seed_process_create_respondent_dictionary(
+        seed_dictionary_list, SEED_RESPONDENT)
+    assert len(respondent_dictionary) == SEED_FIELD_COUNT
