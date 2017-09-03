@@ -1,8 +1,6 @@
 """ seed_process.py processes a JSON file from SimpleForm """
 
-
 from itertools import filterfalse
-
 
 DATA_PAYLOAD = "data"
 UPDATES = "Updates from"
@@ -27,7 +25,8 @@ def contains_update_subject(internal_dictionary):
 
 def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
     """ Process the JSON file by removing the mailing list subscription entries """
-    seed_internal_dictionary_list[:] = filterfalse(contains_update_subject, seed_internal_dictionary_list)
+    seed_internal_dictionary_list[:] = filterfalse(
+        contains_update_subject, seed_internal_dictionary_list)
 
 
 def seed_process_create_internal_dictionary(seed_json):
@@ -36,7 +35,8 @@ def seed_process_create_internal_dictionary(seed_json):
     internal_dictionary_list = []
     for current_form_submission_index in range(0, maximum_form_submission):
         current_form_submission = seed_json[current_form_submission_index]
-        for key_specific_person, value_specific_person in current_form_submission.items():
+        for key_specific_person, value_specific_person in current_form_submission.items(
+        ):
             if key_specific_person == DATA_PAYLOAD:
                 submission_details_dict = value_specific_person
                 internal_dictionary_list.append(submission_details_dict)
