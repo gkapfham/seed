@@ -247,6 +247,13 @@ if __name__ == '__main__':
         elif seed_arguments.show_respondents is True:
             seed_dictionary_list = seed_download.seed_load()
             seed_display.seed_display_respondents(seed_dictionary_list)
+        # TASK: Show responses for a respondent to the SEED survey
+        elif seed_arguments.show_respondent is not None:
+            seed_dictionary_list = seed_download.seed_load()
+            seed_respondent_dictionary = seed_process.seed_process_create_respondent_dictionary(
+                seed_dictionary_list, seed_arguments.show_respondent)
+            seed_display.seed_display_respondent_markdown(
+                seed_respondent_dictionary)
         # TASK: Show a sample response to the SEED survey
         elif seed_arguments.show_sample is True:
             seed_dictionary_list = seed_download.seed_load()
