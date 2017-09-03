@@ -142,11 +142,9 @@ def verify_seed_arguments(args):
     elif args.num_topics != DEFAULT_TOPIC_NUMBER and verify_performing_lda(
             args) is False:
         verified_arguments = False
-    elif args.alpha != DEFAULT_ALPHA and verify_performing_lda(
-            args) is False:
+    elif args.alpha != DEFAULT_ALPHA and verify_performing_lda(args) is False:
         verified_arguments = False
-    elif args.eta != DEFAULT_ETA and verify_performing_lda(
-            args) is False:
+    elif args.eta != DEFAULT_ETA and verify_performing_lda(args) is False:
         verified_arguments = False
     elif args.visualize is not False and verify_performing_lda(args) is False:
         verified_arguments = False
@@ -215,14 +213,22 @@ if __name__ == '__main__':
             seed_json = seed_download.seed_download(seed_arguments.token)
             seed_internal_dictionary_list = seed_process.seed_process_create_internal_dictionary(
                 seed_json)
-            print(INDENT, "Downloaded a total of",
-                  len(seed_internal_dictionary_list), "entries")
+            print(
+                INDENT,
+                "Downloaded a total of ",
+                len(seed_internal_dictionary_list),
+                " entries",
+                sep='')
             seed_process.seed_process_remove_email_subscriptions(
                 seed_internal_dictionary_list)
             seed_process.seed_process_remove_emails(
                 seed_internal_dictionary_list)
-            print(INDENT, "Saved a total of",
-                  len(seed_internal_dictionary_list), "entries")
+            print(
+                INDENT,
+                "Saved a total of ",
+                len(seed_internal_dictionary_list),
+                " entries",
+                sep='')
             seed_download.seed_save_json(seed_internal_dictionary_list)
             if seed_arguments.verbose:
                 print(seed_internal_dictionary_list)
