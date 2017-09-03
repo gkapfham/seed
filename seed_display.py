@@ -8,6 +8,9 @@ import seed_lookup
 import seed_process
 
 
+MARKDOWN_HEADER_MARKER = "---"
+
+
 def seed_display_respondents(seed_dictionary_list):
     """ Displays all of the people who responded """
     sorted_seed_dictionary_list = seed_process.seed_process_sort_dictionary_list(
@@ -21,6 +24,13 @@ def seed_display_respondents(seed_dictionary_list):
         print(seed.INDENT,
               current_name.strip(), "is a",
               current_title.strip(), "at", current_company.strip())
+
+
+def seed_display_respondent_markdown(seed_dictionary):
+    """ Displays the details about a respondent """
+    print(MARKDOWN_HEADER_MARKER)
+    print(seed_lookup.COMPANY_NAME, ": ", seed_dictionary[seed_lookup.COMPANY_NAME].strip(), sep='')
+    print(MARKDOWN_HEADER_MARKER)
 
 
 def seed_display_sample(seed_dictionary_list):
