@@ -55,6 +55,8 @@ that complete more quickly, then you can type `pytest tests --runslow`.
 
 ## Using SEED
 
+Before using this Python 3 program, please make sure that you follow the
+instructions to install it and check its correctness by running its test suite.
 If you would like to learn more about how to use SEED, please type `python3
 seed.py --help` and review the command-line options. If you would, for instance,
 like to see who has responded to the SEED survey by processing the provided
