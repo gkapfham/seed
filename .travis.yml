@@ -22,5 +22,13 @@ before_script:
   - python -m nltk.downloader wordnet
   - export SEED_HOME="/home/travis/build/gkapfham/seed"
 
-# command to run tests
-script: pytest tests --runslow
+# NOTE: the command to run the tests
+# does not pass the --rundownload option
+# due to need for a private token
+
+# perform testing:
+# --> run the internal test suite (incl. slow tests) with pytest
+# --> check the README file for correct Markdown
+script:
+  - pytest tests --runslow
+  - mdl README.md
