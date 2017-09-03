@@ -50,8 +50,8 @@ such, these test cases will be skipped when you run the aforementioned command.
 
 Moreover, SEED contains some test cases that normally take a longer time to run
 because of the fact that they invoke functions that use natural language
-processing libraries. If you would still like to run those tests, then you can
-type `pytest tests --runslow`.
+processing libraries. If you would also like to run those tests along with those
+that complete more quickly, then you can type `pytest tests --runslow`.
 
 ## Problems or Praise
 
