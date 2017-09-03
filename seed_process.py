@@ -59,6 +59,6 @@ def seed_process_create_respondent_dictionary(dictionary_list,
     respondent_details_dictionary = {}
     for current_seed_dictionary in dictionary_list:
         current_name = current_seed_dictionary[seed_lookup.PERSON_NAME]
-        if current_name == respondent_name:
+        if respondent_name in current_name:
             respondent_details_dictionary = current_seed_dictionary
     return respondent_details_dictionary
