@@ -15,7 +15,6 @@ def seed_download(seed_simpleform_token):
         'http://getsimpleform.com/messages.json?api_token=' +
         seed_simpleform_token)
     response_json = None
-
     # the query worked and the JSON file can be returned
     if simpleform_response.ok:
         # extract the JSON object
