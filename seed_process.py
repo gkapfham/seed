@@ -1,17 +1,12 @@
 """ seed_process.py processes a JSON file from SimpleForm """
 
 from itertools import filterfalse
+from operator import itemgetter
 
 DATA_PAYLOAD = "data"
 UPDATES = "Updates from"
 SUBJECT = "_subject"
 EMAIL = "reply_to"
-
-
-def seed_process_remove_emails(seed_internal_dictionary_list):
-    """ Process the JSON file by removing the provided email address """
-    for internal_dictionary in seed_internal_dictionary_list:
-        del internal_dictionary[EMAIL]
 
 
 def contains_update_subject(internal_dictionary):
@@ -21,6 +16,12 @@ def contains_update_subject(internal_dictionary):
         return True
     else:
         return False
+
+
+def seed_process_remove_emails(seed_internal_dictionary_list):
+    """ Process the JSON file by removing the provided email address """
+    for internal_dictionary in seed_internal_dictionary_list:
+        del internal_dictionary[EMAIL]
 
 
 def seed_process_remove_email_subscriptions(seed_internal_dictionary_list):
@@ -41,3 +42,9 @@ def seed_process_create_internal_dictionary(seed_json):
                 submission_details_dict = value_specific_person
                 internal_dictionary_list.append(submission_details_dict)
     return internal_dictionary_list
+
+
+def seed_process_sort_dictionary_list(dictionary_list, chosen_key):
+    """ Sorts the list of dictionaries according to a key """
+    sorted_dictionary_list = sorted(dictionary_list, key=itemgetter(chosen_key))
+    return sorted_dictionary_list
