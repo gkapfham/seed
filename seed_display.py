@@ -14,7 +14,7 @@ def seed_display_respondents(seed_dictionary_list):
         seed_dictionary_list, seed_lookup.PERSON_NAME)
     for current_seed_dictionary in sorted_seed_dictionary_list:
         current_name = current_seed_dictionary[seed_lookup.PERSON_NAME]
-        print(seed.INDENT, current_name)
+        print(seed.INDENT, current_name.lstrip())
 
 
 def seed_display_sample(seed_dictionary_list):
