@@ -12,9 +12,15 @@ def seed_display_respondents(seed_dictionary_list):
     """ Displays all of the people who responded """
     sorted_seed_dictionary_list = seed_process.seed_process_sort_dictionary_list(
         seed_dictionary_list, seed_lookup.PERSON_NAME)
+    print("Displaying the", len(sorted_seed_dictionary_list), "respondents")
+    print()
     for current_seed_dictionary in sorted_seed_dictionary_list:
         current_name = current_seed_dictionary[seed_lookup.PERSON_NAME]
-        print(seed.INDENT, current_name.lstrip())
+        current_company = current_seed_dictionary[seed_lookup.COMPANY_NAME]
+        current_title = current_seed_dictionary[seed_lookup.TITLE_NAME]
+        print(seed.INDENT,
+              current_name.strip(), "is a",
+              current_title.strip(), "at", current_company.strip())
 
 
 def seed_display_sample(seed_dictionary_list):
