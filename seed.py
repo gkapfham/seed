@@ -166,6 +166,7 @@ def display_welcome_message():
     """ Display a welcome message """
     print("SEED: Educational Discussions with Software Engineers")
     print("http://www.cs.allegheny.edu/sites/gkapfham/seed/")
+    print("https://github.com/gkapfham/seed")
     print()
 
 
