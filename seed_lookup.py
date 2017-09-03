@@ -1,6 +1,7 @@
 """ Give a dictionary of constants for the keys in the SEED file """
 
 COMPANY_NAME = "company_name"
+COPYEDIT = "copyedit"
 EMAIL = "reply_to"
 FORMAT = "_format"
 PERSON_NAME = "name"
