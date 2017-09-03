@@ -1,8 +1,6 @@
 """ Create different entities used during the analysis of SEED responses """
 
-
 import seed_lookup
-
 
 DIVIDER = ","
 QUOTATION_MARK = "\""
