@@ -9,6 +9,7 @@ import seed_process
 
 MARKDOWN_HEADER_MARKER = "---"
 MARKDOWN_QUOTE = "\""
+MARKDOWN_PERSON_NAME = "person_name"
 
 
 def seed_display_respondents(seed_dictionary_list):
@@ -43,13 +44,23 @@ def seed_display_respondent_markdown(seed_dictionary):
 
 def seed_display_markdown_header_entry(seed_entry, seed_dictionary):
     """ Display a specific header entry """
-    print(
-        seed_entry,
-        ": ",
-        MARKDOWN_QUOTE,
-        seed_dictionary[seed_entry].strip(),
-        MARKDOWN_QUOTE,
-        sep='')
+    if seed_entry is not seed_lookup.PERSON_NAME:
+        print(
+            seed_entry,
+            ": ",
+            MARKDOWN_QUOTE,
+            seed_dictionary[seed_entry].strip(),
+            MARKDOWN_QUOTE,
+            sep='')
+    else:
+        print(
+            MARKDOWN_PERSON_NAME,
+            ": ",
+            MARKDOWN_QUOTE,
+            seed_dictionary[seed_entry].strip(),
+            MARKDOWN_QUOTE,
+            sep='')
+
 
 
 def seed_display_sample(seed_dictionary_list):
