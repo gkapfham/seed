@@ -8,6 +8,8 @@ UPDATES = "Updates from"
 SUBJECT = "_subject"
 EMAIL = "reply_to"
 
+import seed_lookup
+
 
 def contains_update_subject(internal_dictionary):
     """ Return True if the subject contains 'Updates from ...'
@@ -46,5 +48,17 @@ def seed_process_create_internal_dictionary(seed_json):
 
 def seed_process_sort_dictionary_list(dictionary_list, chosen_key):
     """ Sorts the list of dictionaries according to a key """
-    sorted_dictionary_list = sorted(dictionary_list, key=itemgetter(chosen_key))
+    sorted_dictionary_list = sorted(
+        dictionary_list, key=itemgetter(chosen_key))
     return sorted_dictionary_list
+
+
+def seed_process_create_respondent_dictionary(dictionary_list,
+                                              respondent_name):
+    """ Returns the details for a specific respondent """
+    respondent_details_dictionary = {}
+    for current_seed_dictionary in dictionary_list:
+        current_name = current_seed_dictionary[seed_lookup.PERSON_NAME]
+        if current_name == respondent_name:
+            respondent_details_dictionary = current_seed_dictionary
+    return respondent_details_dictionary
