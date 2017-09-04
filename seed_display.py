@@ -59,18 +59,17 @@ def seed_display_respondent_markdown(seed_dictionary):
     print(MARKDOWN_SECTION_MARKER + MARKDOWN_SECTION_MARKER,
           QUESTION_FACT_FULL)
     print()
-    print(seed_dictionary[seed_lookup.QUESITON_FACT].replace(
-        TWO_SPACE_ENDING, ONE_SPACE_ENDING))
+    print(reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESITON_FACT]))
     print()
     print(MARKDOWN_SECTION_MARKER + MARKDOWN_SECTION_MARKER,
           QUESTION_CHALLENGE_FULL)
     print()
-    print(seed_dictionary[seed_lookup.QUESTION_CHALLENGE])
+    print(reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESTION_CHALLENGE]))
     print()
     print(MARKDOWN_SECTION_MARKER + MARKDOWN_SECTION_MARKER,
           QUESTION_ADVICE_FULL)
     print()
-    print(seed_dictionary[seed_lookup.QUESTION_ADVICE])
+    print(reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESTION_ADVICE]))
     print()
 
 
@@ -95,3 +94,8 @@ def seed_display_sample(seed_dictionary_list):
     randomly_chosen_index = random.randint(first_entry_index, last_entry_index)
     first_seed_dictionary = seed_dictionary_list[randomly_chosen_index]
     print(json.dumps(first_seed_dictionary, indent=3))
+
+
+def reformat_trailing_spaces(seed_response):
+    """ Reformats to have one space at end of the sentence """
+    return seed_response.replace(TWO_SPACE_ENDING, ONE_SPACE_ENDING)
