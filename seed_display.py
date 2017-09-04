@@ -64,12 +64,15 @@ def seed_display_respondent_markdown(seed_dictionary):
     print(MARKDOWN_SECTION_MARKER + MARKDOWN_SECTION_MARKER,
           QUESTION_CHALLENGE_FULL)
     print()
-    print(reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESTION_CHALLENGE]))
+    print(
+        reformat_trailing_spaces(seed_dictionary[
+            seed_lookup.QUESTION_CHALLENGE]))
     print()
     print(MARKDOWN_SECTION_MARKER + MARKDOWN_SECTION_MARKER,
           QUESTION_ADVICE_FULL)
     print()
-    print(reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESTION_ADVICE]))
+    print(
+        reformat_trailing_spaces(seed_dictionary[seed_lookup.QUESTION_ADVICE]))
     print()
 
 
